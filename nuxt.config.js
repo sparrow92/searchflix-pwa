@@ -24,7 +24,9 @@ export default {
   components: true,
 
   buildModules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxt-hero-icons/outline/nuxt',
+    '@nuxt-hero-icons/solid/nuxt'
   ],
 
   modules: [
