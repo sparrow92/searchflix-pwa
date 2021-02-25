@@ -24,6 +24,7 @@ export default {
   components: true,
 
   buildModules: [
+    '@nuxtjs/tailwindcss'
   ],
 
   modules: [
@@ -40,5 +41,14 @@ export default {
   },
 
   build: {
-  }
+    postcss: {
+      plugins: {
+        'postcss-nested': {}
+      }
+    }
+  },
+
+  env: {
+    NODE_ENV: process.env.NODE_ENV
+  },
 }
