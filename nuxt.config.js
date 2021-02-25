@@ -19,6 +19,7 @@ export default {
   ],
 
   plugins: [
+    { src: '@/plugins/vue-awesome-swiper', mode: 'client' }
   ],
 
   components: true,
