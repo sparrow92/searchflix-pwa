@@ -1,5 +1,5 @@
 <template>
-  <img src="@/assets/images/logo.png" alt="">
+  <img src="@/assets/images/logo.png">
 </template>
 
 <style lang="postcss" scoped>
