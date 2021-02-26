@@ -4,7 +4,7 @@ export default {
   target: 'static',
 
   head: {
-    title: 'searchflix-pwa',
+    title: 'Searchflix',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -39,7 +39,15 @@ export default {
 
   pwa: {
     manifest: {
-      lang: 'en'
+      name: 'Searchflix',
+      short_name: 'Searchflix',
+      lang: 'pl',
+      display: 'standalone',
+    },
+    icon: {
+      purpose: 'maskable',
+      source: '~/static/searchflix-icon.png',
+      fileName: 'searchflix-icon.png'
     }
   },
 
