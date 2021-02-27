@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center justify-center p-8">
-    <h1>Ulubione</h1>
+    <h1>Ulubione {{ test }}</h1>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam repellendus totam obcaecati, non ex sint molestiae numquam distinctio, dignissimos odit eaque cumque voluptates facere esse? Cupiditate eaque laborum alias repellendus?
     </p>
@@ -9,7 +9,13 @@
 
 <script>
 export default {
-  layout: 'app'
+  layout: 'app',
+
+  data: function () {
+    return {
+      test: process.env.test
+    }
+  },
 }
 </script>
 
