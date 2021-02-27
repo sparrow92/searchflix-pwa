@@ -19,7 +19,8 @@ export default {
   ],
 
   plugins: [
-    { src: '@/plugins/vue-awesome-swiper', mode: 'client' }
+    { src: '@/plugins/vue-awesome-swiper', mode: 'client' },
+    { src: '@/plugins/axios', mode: 'client' }
   ],
 
   components: true,
@@ -35,7 +36,9 @@ export default {
     '@nuxtjs/pwa',
   ],
 
-  axios: {},
+  axios: {
+    baseURL: `https://${process.env.X_RAPIDAPI_HOST}`,
+  },
 
   pwa: {
     manifest: {
@@ -61,6 +64,7 @@ export default {
 
   env: {
     NODE_ENV: process.env.NODE_ENV,
-    test: process.env.TEST
+    X_RAPIDAPI_KEY: process.env.X_RAPIDAPI_KEY,
+    X_RAPIDAPI_HOST: process.env.X_RAPIDAPI_HOST
   },
 }
