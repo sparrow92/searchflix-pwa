@@ -16,6 +16,7 @@ export default {
   },
 
   css: [
+    'swiper/swiper.min.css'
   ],
 
   plugins: [
