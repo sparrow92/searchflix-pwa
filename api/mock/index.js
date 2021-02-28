@@ -29,8 +29,8 @@ export default {
   },
 
   async fetchMovieDetails (id) {
-    let images = await import(`./data/movie/${id}/details`).then(module => module.default);
-    return fetch(images, 1000)
+    let details = await import(`./data/movie/${id}/details`).then(module => module.default);
+    return fetch(details, 1000)
   }
 
 }
