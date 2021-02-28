@@ -47,6 +47,6 @@ export default {
 
 <style lang="postcss">
   a.nuxt-link-exact-active {
-    @apply text-red-600 !important;
+    @apply text-red !important;
   }
 </style>
