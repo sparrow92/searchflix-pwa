@@ -5,10 +5,10 @@
 
     <swiper :options="swiperOptions" class="w-screen">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
-        <Thumbnail :id="movie.nfid" />
+        <Thumbnail :id="movie.nfid" @click.native="open(movie.nfid)" />
+        
       </swiper-slide>
     </swiper>  
-
   </div>
 </template>
 
@@ -28,7 +28,15 @@ export default {
         centeredSlides: false
       }
     }
+  },
+
+  methods: {
+    open: function(value) {
+      this.$emit('open', value);
+    },    
   }
+
+
 }
 </script>
 
