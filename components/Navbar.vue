@@ -46,6 +46,10 @@ export default {
 </script>
 
 <style lang="postcss">
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   a.nuxt-link-exact-active {
     @apply text-red !important;
   }
