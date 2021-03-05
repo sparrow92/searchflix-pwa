@@ -53,8 +53,8 @@ export default {
     },
     icon: {
       purpose: 'maskable',
-      source: '~/static/searchflix-icon.png',
-      fileName: 'searchflix-icon.png'
+      source: '~/static/searchflix.png',
+      fileName: 'searchflix.png'
     }
   },
 
