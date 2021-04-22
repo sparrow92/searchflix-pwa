@@ -9,6 +9,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  middleware: 'app'
+}
+</script>
+
 <style lang="postcss" scoped>
 
 </style>

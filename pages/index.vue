@@ -10,12 +10,23 @@
 
 <script>
 import mock from '@/api/mock/index'
+import { mapActions } from 'vuex'
 
 export default {
   async asyncData({ $axios }) {
     // const countries = await $axios.$get('/countries')
     const countries = await mock.fetchMovieDetails(81210431)
     return { countries }
+  },
+
+  methods: {
+    ...mapActions([
+      'updateCountry'
+    ]),   
+  },
+
+  mounted() {
+    this.updateCountry('pl')
   }
 }
 </script>
