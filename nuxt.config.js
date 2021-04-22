@@ -21,7 +21,8 @@ export default {
 
   plugins: [
     { src: '@/plugins/vue-awesome-swiper', mode: 'client' },
-    { src: '@/plugins/axios', mode: 'client' }
+    { src: '@/plugins/axios', mode: 'client' },
+    { src: '@/plugins/v-click-outside', mode: 'client' }
   ],
 
   components: true,
