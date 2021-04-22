@@ -7,24 +7,8 @@
       <div class="text-black">
 
         <h2>{{ id }}</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam ipsa sequi tenetur aliquid praesentium ducimus ipsum autem minima hic corporis, rem possimus, delectus debitis soluta neque at ratione assumenda? Fugiat?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam ipsa sequi tenetur aliquid praesentium ducimus ipsum autem minima hic corporis, rem possimus, delectus debitis soluta neque at ratione assumenda? Fugiat?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam ipsa sequi tenetur aliquid praesentium ducimus ipsum autem minima hic corporis, rem possimus, delectus debitis soluta neque at ratione assumenda? Fugiat?
-        </p>
-                <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam ipsa sequi tenetur aliquid praesentium ducimus ipsum autem minima hic corporis, rem possimus, delectus debitis soluta neque at ratione assumenda? Fugiat?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam ipsa sequi tenetur aliquid praesentium ducimus ipsum autem minima hic corporis, rem possimus, delectus debitis soluta neque at ratione assumenda? Fugiat?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam ipsa sequi tenetur aliquid praesentium ducimus ipsum autem minima hic corporis, rem possimus, delectus debitis soluta neque at ratione assumenda? Fugiat?
-        </p>
+        <!-- {{ images }} -->
+        {{ details }}
       </div>
     </div>    
   </div>
@@ -45,6 +29,7 @@ export default {
   data() {
     return {
       images: [],
+      details: []
     }
   },
 
@@ -59,8 +44,13 @@ export default {
   methods: {
     async getImages() {
       if (this.id) {
-        const images = await mock.fetchMovieImages(this.id);
-        this.images = images
+        this.images = await mock.fetchMovieImages(this.id);
+      }
+    },
+
+    async getDetails() {
+      if (this.id) {
+        this.details = await mock.fetchMovieDetails(this.id);
       }
     },
 
@@ -71,6 +61,7 @@ export default {
 
   created() {
     this.getImages();
+    this.getDetails();
   }
 }
 </script>
