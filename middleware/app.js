@@ -1,5 +1,5 @@
 export default function ({ redirect, store }) {
-  if (!store.getters.countrySelected) {
+  if (!store.getters.isCountrySelected) {
     redirect('/');
   }
 };

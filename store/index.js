@@ -3,14 +3,18 @@ export const state = () => ({
 });
 
 export const getters = {
-  countrySelected(state) {
+  isCountrySelected(state) {
     return state.country !== null
+  },
+
+  selectedCountry(state) {
+    return state.country
   }
 }
 
 export const mutations = {
   STORE_COUNTRY(state, payload) {
-    state.country = payload.country;
+    state.country = payload;
   },
 };
 
