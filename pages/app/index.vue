@@ -2,9 +2,9 @@
   <div class="flex flex-col items-start justify-center py-8">
     <h1 class="ml-8">Strona Główna</h1>
 
-    <Slider :movies="movies" title="Horrory" @open="open" />
-    <Slider :movies="movies" title="Thrillery" @open="open" />
-    <Details :id="id" :show="showDetails" @close="close" />
+    <Slider v-for="(group, index) in grouped" :key="index" :movies="group" :title="index" @open="open" />
+
+    <Details :id="id" :show="showDetails" @close="close" /> 
 
   </div>
 </template>
@@ -27,7 +27,17 @@ export default {
     }
   },
 
+  computed: {
+    grouped() {
+      return this.groupBy(this.movies, (movie) => movie.year);
+    }
+  },
+
   methods: {
+    groupBy(xs, f) {
+      return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
+    },
+
     close: function() {
       this.showDetails = false;
     },
