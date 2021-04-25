@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-searchflix z-10 bg-cover relative min-h-screen">
-    <div class="absolute z-20 inset-0 bg-black bg-opacity-90"></div>
+  <div class="bg-searchflix overflow-y-scroll z-10 bg-cover relative min-h-screen">
+    <div class="fixed z-20 inset-0 bg-black bg-opacity-90"></div>
     <div class="absolute inset-0 z-30">
       <Nuxt />
       <Navbar />         

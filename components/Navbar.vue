@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed flex justify-around items-center bottom-0 w-screen h-16 bg-black dark:bg-gray-700 shadow-lg border-t border-gray-900 dark:border-gray-600">
+  <div class="fixed flex justify-around items-center bottom-0 w-screen h-16 bg-black dark:bg-gray-700 shadow-lg border-t border-gray-900 dark:border-gray-600 z-40">
     
     <div >
       <NuxtLink class="flex flex-col items-center text-gray-300" to="/app">
