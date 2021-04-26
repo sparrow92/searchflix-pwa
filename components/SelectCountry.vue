@@ -1,8 +1,8 @@
 <template>
-  <div class="mx-8">
+  <div class="m-8">
     <h1 class="text-xl font-bold">Wybierz swój kraj:</h1>
     <v-select 
-      class="style-chooser cursor-pointer"
+      class="select-country cursor-pointer"
       v-model="selected"
       :options="countries"
       :reduce="country => country.id"
@@ -59,9 +59,9 @@ export default {
 </script>
 
 <style lang="postcss">
-  .style-chooser .vs__search::placeholder,
-  .style-chooser .vs__dropdown-toggle,
-  .style-chooser .vs__dropdown-menu {
+  .select-country .vs__search::placeholder,
+  .select-country .vs__dropdown-toggle,
+  .select-country .vs__dropdown-menu {
     background: #dfe5fb;
     border: none;
     color: #394066;
@@ -69,8 +69,12 @@ export default {
     font-variant: small-caps;
   }
 
-  .style-chooser .vs__clear,
-  .style-chooser .vs__open-indicator {
+  .select-country .vs__clear,
+  .select-country .vs__open-indicator {
     fill: #394066;
+  }
+
+  .select-country .vs__selected {
+    margin: 0 2px;
   }
 </style>
