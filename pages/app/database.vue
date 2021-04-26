@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start justify-center py-8">
+  <div>
     <h1 class="mx-8">Ustawienia</h1>
     <SelectCountry />
     <p class="mx-8">

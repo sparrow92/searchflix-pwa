@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mx-8">
     <h1 class="text-xl font-bold">Wybierz swój kraj:</h1>
     <v-select 
       class="style-chooser cursor-pointer"
