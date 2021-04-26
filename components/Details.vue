@@ -1,29 +1,20 @@
 <template>
-  <div class="transition-all duration-200 fixed top-0 justify-center ites-start md:items-center z-50 flex w-full h-screen bg-black bg-opacity-60" :class="show ? 'visible opacity-100' : 'invisible opacity-0'">
-    <div class="transition-all overflow-scroll transform duration-200 w-screen mx-3 mt-16 md:mt-0 md:mb-0 md:w-96 flex flex-col bg-white rounded-xl shadow-lg" :class="show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50'"  v-click-outside="close">
-      <div class="relative flex justify-center border-b border-gray-200 p-5">
-        <solid-x-icon class="w-7 h-7 text-red cursor-pointer absolute inset-y-0 right-4 m-auto" @click.native="close" />
-      </div>
-      <div class="text-black">
+  <Modal :show="show" @close="close">      
+    <template v-slot:header>
+      {{ id }}
+    </template>
 
-        <h2>{{ id }}</h2>
-        {{ details }}
-        <button class="mt-5 rounded uppercase py-3 px-8 bg-red text-white text-xl font-bold shadow-lg" @click="addToList">Zapisz na liście</button>
-        
-      </div>
-    </div>    
-  </div>
+    <h2>{{ id }}</h2>
+    {{ details }}
+    <button class="mt-5 rounded uppercase py-3 px-8 bg-red text-white text-xl font-bold shadow-lg" @click="addToList">Zapisz na liście</button>
+
+  </Modal>
 </template>
 
 <script>
-import vClickOutside from 'v-click-outside'
 import mock from '@/api/mock/index'
 
 export default {
-  directives: {
-    clickOutside: vClickOutside.directive
-  },
-
   props: {
     id: Number,
     show: {
