@@ -42,9 +42,9 @@ export default {
       this.showDetails = false;
     },
 
-    open: function(id) {
+    open: function(value) {
+      this.id = value
       this.showDetails = true
-      this.id = id
     }
   }
 }

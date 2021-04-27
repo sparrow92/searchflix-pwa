@@ -1,11 +1,11 @@
 <template>
-  <Modal :show="show" @close="close">      
+  <Modal :show="show" @close="close" :background="photo.url" :key="modalKey">      
     <template v-slot:header>
       {{ id }}
     </template>
 
     <h2>{{ id }}</h2>
-    {{ details }}
+    {{ images }}
     <button class="mt-5 rounded uppercase py-3 px-8 bg-red text-white text-xl font-bold shadow-lg" @click="addToList">Zapisz na liście</button>
 
   </Modal>
@@ -25,15 +25,29 @@ export default {
 
   data() {
     return {
-      images: [],
-      details: []
+      images: [{ 
+        url: '', 
+        itype: 'bg'
+      }],
+      details: [],
+      modalKey: 0,
+    }
+  },
+
+  watch: {
+    id (value) {
+      if (value) {
+        this.getImages();
+        this.getDetails();
+        this.modalKey++
+      }
     }
   },
 
   computed: {
     photo() {
       return this.images.find(image => {
-        return image.itype == 'bo1280x448'
+        return image.itype == 'bg'
       });
     },
 
@@ -46,15 +60,11 @@ export default {
 
   methods: {
     async getImages() {
-      if (this.id) {
-        this.images = await mock.fetchMovieImages(this.id);
-      }
+      this.images = await mock.fetchMovieImages(this.id);
     },
 
     async getDetails() {
-      if (this.id) {
-        this.details = await mock.fetchMovieDetails(this.id);
-      }
+      this.details = await mock.fetchMovieDetails(this.id);
     },
 
     addToList() {
@@ -65,11 +75,6 @@ export default {
       this.$emit('close');
     },
   },
-
-  created() {
-    this.getImages();
-    this.getDetails();
-  }
 }
 </script>
 

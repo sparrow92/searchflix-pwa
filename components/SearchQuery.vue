@@ -5,7 +5,7 @@
         Szukania zaawansowane
       </template>
 
-      <div class="text-black">
+      <div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium eaque quos voluptatem et dolore error atque, consequatur ab temporibus minima cumque molestiae sit alias obcaecati eveniet recusandae corporis quis ad!
         </p>

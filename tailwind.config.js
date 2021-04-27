@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: [],
 
@@ -12,7 +14,8 @@ module.exports = {
       colors: {
         red: {
           'DEFAULT': '#db202c',
-        }
+        },
+        gray: colors.trueGray,
       },
 
       backgroundImage: theme => ({
