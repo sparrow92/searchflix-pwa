@@ -37,9 +37,8 @@ export default {
   watch: {
     id (value) {
       if (value) {
-        this.getImages();
-        this.getDetails();
-        this.modalKey++
+        this.getImages(value);
+        this.getDetails(value);
       }
     }
   },
@@ -59,12 +58,12 @@ export default {
   },
 
   methods: {
-    async getImages() {
-      this.images = await mock.fetchMovieImages(this.id);
+    async getImages(id) {
+      this.images = await mock.fetchMovieImages(id);
     },
 
-    async getDetails() {
-      this.details = await mock.fetchMovieDetails(this.id);
+    async getDetails(id) {
+      this.details = await mock.fetchMovieDetails(id);
     },
 
     addToList() {

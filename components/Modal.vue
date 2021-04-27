@@ -38,27 +38,36 @@ export default {
 
     background: {
       type: String,
-      default: () => false
+      default: () => ''
     }
   },
 
   data() {
     return {
+      backgroundImage: '',
       defaultStyle: {
-      },
+      }
+    }
+  },
 
-      bgStyle: {
-        paddingTop: '56%',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        backgroundImage: `url(${this.background})`
+  watch: {
+    background (value) {
+      if (value) {
+        this.backgroundImage = value;
       }
     }
   },
 
   computed: {
-
+    bgStyle() {
+      return {
+        paddingTop: '56%',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        backgroundImage: `url(${this.backgroundImage})`
+      }
+    }
   },
 
   methods: {
