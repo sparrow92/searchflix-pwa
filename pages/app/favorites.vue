@@ -2,12 +2,14 @@
   <div>
     <h1 class="mx-8">Do obejrzenia</h1>
     <p class="mx-8">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam repellendus totam obcaecati, non ex sint molestiae numquam distinctio, dignissimos odit eaque cumque voluptates facere esse? Cupiditate eaque laborum alias repellendus?
+      <img v-for="movie in getMovies" :key="movie.id" :src="movie.image" alt="">  
     </p>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   layout: 'app',
 
@@ -15,6 +17,12 @@ export default {
     return {
     }
   },
+
+  computed: {
+    ...mapGetters([ 
+      'getMovies'
+    ])
+  }
 }
 </script>
 

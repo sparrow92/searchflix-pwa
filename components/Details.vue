@@ -5,13 +5,15 @@
     </template>
 
     <h2>{{ id }}</h2>
-    {{ images }}
+    {{ getMovies }}
     <button class="mt-5 rounded uppercase py-3 px-8 bg-red text-white text-xl font-bold shadow-lg" @click="addToList">Zapisz na liście</button>
+    <button class="mt-5 rounded uppercase py-3 px-8 bg-red text-white text-xl font-bold shadow-lg" @click="removeFromList">usuń</button>
 
   </Modal>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import mock from '@/api/mock/index'
 
 export default {
@@ -44,6 +46,10 @@ export default {
   },
 
   computed: {
+    ...mapGetters([ 
+      'getMovies'
+    ]),
+
     photo() {
       return this.images.find(image => {
         return image.itype == 'bg'
@@ -54,10 +60,21 @@ export default {
       return this.details.find(movie => {
         return movie.netflixid
       });
-    }
+    },
+
+    poster() {
+      return this.images.find(image => {
+        return image.itype == 'bo166x236'
+      });
+    },
   },
 
   methods: {
+    ...mapActions([
+      'addMovie',
+      'removeMovie'
+    ]),
+
     async getImages(id) {
       this.images = await mock.fetchMovieImages(id);
     },
@@ -67,7 +84,11 @@ export default {
     },
 
     addToList() {
-      console.log(`Metoda zapisująca film o ${this.id} na listę!`)
+      this.addMovie({ id: this.id, image: this.poster.url})
+    },
+
+    removeFromList() {
+      this.removeMovie(this.id);
     },
 
     close: function() {
