@@ -2,8 +2,9 @@
   <div>
     <h1 class="mx-8">Do obejrzenia</h1>
     <p class="mx-8">
-      <img v-for="movie in getMovies" :key="movie.id" :src="movie.image" alt="">  
+      <img v-for="movie in getMovies" :key="movie.id" :src="movie.image" @click="open(movie.id)">  
     </p>
+    <Details :id="id" :show="showDetails" @close="close" /> 
   </div>
 </template>
 
@@ -13,8 +14,10 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   layout: 'app',
 
-  data: function () {
+  data() {
     return {
+      showDetails: false,
+      id: null
     }
   },
 
@@ -22,6 +25,17 @@ export default {
     ...mapGetters([ 
       'getMovies'
     ])
+  },
+
+  methods: {
+    close: function() {
+      this.showDetails = false;
+    },
+
+    open: function(value) {
+      this.id = value
+      this.showDetails = true
+    }
   }
 }
 </script>
