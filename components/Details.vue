@@ -1,13 +1,12 @@
 <template>
   <Modal :show="show" @close="close" :background="photo.url" :key="modalKey">      
     <template v-slot:header>
-      {{ id }}
+    <button class="mt-5 rounded uppercase py-2 px-5 bg-red text-white text-sm font-bold shadow-lg" v-if="!isSaved" @click="addToList">Zapisz na liście</button>
+    <button class="mt-5 rounded uppercase py-2 px-5 bg-red text-white text-sm font-bold shadow-lg" v-else @click="removeFromList">usuń</button>
     </template>
 
-    <h2>{{ id }}</h2>
-    {{ getMovies }}
-    <button class="mt-5 rounded uppercase py-3 px-8 bg-red text-white text-xl font-bold shadow-lg" @click="addToList">Zapisz na liście</button>
-    <button class="mt-5 rounded uppercase py-3 px-8 bg-red text-white text-xl font-bold shadow-lg" @click="removeFromList">usuń</button>
+    <h2 v-html="movie.title" />
+
 
   </Modal>
 </template>
@@ -57,9 +56,11 @@ export default {
     },
 
     movie() {
-      return this.details.find(movie => {
+      let movie = this.details.find(movie => {
         return movie.netflixid
       });
+
+      return movie || ''
     },
 
     poster() {
@@ -67,6 +68,14 @@ export default {
         return image.itype == 'bo166x236'
       });
     },
+
+    isSaved() {
+      let array = this.getMovies.filter(movie => {
+        return movie.id == this.id
+      })
+      
+      return array.length > 0
+    }
   },
 
   methods: {
