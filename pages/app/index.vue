@@ -17,7 +17,8 @@ export default {
 
   async asyncData() {
     const movies = await mock.fetchMovies()
-    return { movies }
+    const expiring = await mock.fetchExpiringMovies()
+    return { movies, expiring }
   },
 
   data() {

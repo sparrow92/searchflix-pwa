@@ -1,6 +1,7 @@
 import countries from './data/country/all'
 import genres from './data/genre/all'
 import movies from './data/movie/all'
+import expiring from './data/movie/expiring'
 
 const fetch = (mockData, time = 0) => {
   return new Promise((resolve) => {
@@ -21,6 +22,10 @@ export default {
 
   fetchMovies () {
     return fetch(movies, 1000)
+  },
+
+  fetchExpiringMovies () {
+    return fetch(expiring, 1000)
   },
 
   async fetchMovieImages (id) {
