@@ -1,6 +1,6 @@
 export const state = () => ({
   country: process.browser ? (localStorage.getItem('country') || null) : null,
-  movies: []
+  movies:  process.browser ? (JSON.parse(localStorage.getItem('movies')) || []) : [],
 });
 
 export const getters = {
@@ -49,11 +49,13 @@ export const actions = {
     commit('STORE_COUNTRY', country)
   },
 
-  addMovie({ commit }, movie) {
-    commit('ADD_MOVIE', movie)
+  addMovie({ commit, state }, movie) {
+    commit('ADD_MOVIE', movie);
+    localStorage.setItem('movies', JSON.stringify(state.movies));
   },
 
-  removeMovie({ commit }, id) {
-    commit('REMOVE_MOVIE', id)
+  removeMovie({ commit, state }, id) {
+    commit('REMOVE_MOVIE', id);
+    localStorage.setItem('movies', JSON.stringify(state.movies));
   }
 };
