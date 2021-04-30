@@ -2,7 +2,7 @@
   <div class="absolute inset-0 flex flex-col items-center justify-center p-8">
     <Logo />
     <SelectCountry />
-    <button class="mt-5 rounded uppercase py-3 px-8 bg-red text-xl font-bold shadow-lg" @click="$router.push('/app')">Przejdź dalej</button>
+    <Button @click.native="$router.push('/app')">Przejdź dalej</Button>
   </div>
 </template>
 

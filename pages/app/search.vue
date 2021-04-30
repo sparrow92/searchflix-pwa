@@ -3,7 +3,7 @@
     <h1 class="mx-8">Szukaj</h1>
     <p class="mx-8">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam repellendus totam obcaecati, non ex sint molestiae numquam distinctio, dignissimos odit eaque cumque voluptates facere esse? Cupiditate eaque laborum alias repellendus?
-      <button @click="open">Wyszukiwanie zaawansowane</button>
+      <Button @click.native="open">Zaawansowane</Button>
     </p>
     
     <SearchQuery :show="showSearch" @close="close" /> 

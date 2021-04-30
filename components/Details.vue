@@ -1,8 +1,8 @@
 <template>
   <Modal :show="show" @close="close" :background="photo.url" :key="modalKey">      
     <template v-slot:header>
-    <button class="mt-5 rounded uppercase py-2 px-5 bg-red text-white text-sm font-bold shadow-lg" v-if="!isSaved" @click="addToList">Zapisz na liście</button>
-    <button class="mt-5 rounded uppercase py-2 px-5 bg-red text-white text-sm font-bold shadow-lg" v-else @click="removeFromList">usuń</button>
+    <Button small v-if="!isSaved" @click.native="addToList">Zapisz na liście</Button>
+    <Button small v-else @click.native="removeFromList">Usuń</Button>
     </template>
 
     <h2 v-html="movie.title" />
