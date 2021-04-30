@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1 class="mx-8">Do obejrzenia</h1>
-    <div class="grid mx-8 gap-4">
+    <Loader v-if="loading" />      
+    <div v-else class="grid mx-8 gap-4">
       <div 
         @click="open(movie.id)" 
         v-for="movie in getMovies" 
@@ -25,7 +26,8 @@ export default {
   data() {
     return {
       showDetails: false,
-      id: null
+      id: null,
+      loading: false
     }
   },
 

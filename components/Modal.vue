@@ -4,18 +4,19 @@
       class="transition-all overflow-scroll transform duration-200 w-screen mx-3 mt-16 md:mt-0 md:mb-0 md:w-96 flex flex-col bg-gray-900 rounded shadow-lg" 
       :class="show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50'"  v-click-outside="close"
     >
+      <Loader v-if="loading" />      
       <div
-        :style="[background ? bgStyle : defaultStyle]"
-        class="relative w-full flex justify-between items-center border-b border-gray-800 p-5"
+        :style="[(background && !loading) ? bgStyle : defaultStyle]"
+        class="relative w-full flex justify-between items-center p-5"
+        :class="{'border-b border-gray-800': !loading}"
       >
-        <span class="modal__title font-semibold text-lg">
+        <span class="modal__title font-semibold text-lg" v-if="!loading">
           <slot name="header"/>
         </span>
         <solid-x-icon class="w-7 h-7 text-red cursor-pointer absolute right-4 m-auto" :class="background ? 'top-4' : 'inset-y-0'" @click.native="close" />
       </div>
 
-
-      <div class="modal__body ">
+      <div class="modal__body" v-if="!loading">
         <slot/>
       </div>
     </div>    
@@ -32,6 +33,11 @@ export default {
 
   props: {
     show: {
+      type: Boolean,
+      default: () => false
+    },
+
+    loading: {
       type: Boolean,
       default: () => false
     },
