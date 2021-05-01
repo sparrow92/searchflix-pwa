@@ -1,8 +1,7 @@
 <template>
   <div>
     <h1 class="ml-8">Strona Główna</h1>
-
-    <Slider v-for="(group, index) in grouped" :key="index" :movies="group" :title="index" @open="open" />
+    <Slider v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="group.date" @open="open" />
 
     <Details :id="id" :show="showDetails" @close="close" /> 
 
@@ -29,13 +28,20 @@ export default {
 
   computed: {
     grouped() {
-      return this.groupBy(this.movies, (movie) => movie.expiredate);
+      let obj = this.groupBy(this.movies, (movie) => movie.expiredate);
+      let array = Object.keys(obj).map(key => {
+        return { 
+          date: key, 
+          movies: obj[key] 
+        }
+      })
+      return array.reverse()
     }
   },
 
   methods: {
-    groupBy(xs, f) {
-      return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
+    groupBy(movies, f) {
+      return movies.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
     },
 
     close: function() {
