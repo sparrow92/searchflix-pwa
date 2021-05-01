@@ -5,7 +5,7 @@
 
     <swiper :options="swiperOptions" class="w-screen">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
-        <Thumbnail :id="movie.nfid" @click.native="open(movie.nfid)" />
+        <Thumbnail :id="getId(movie)" @click.native="open(movie)" />
         
       </swiper-slide>
     </swiper>  
@@ -31,9 +31,14 @@ export default {
   },
 
   methods: {
-    open: function(value) {
-      this.$emit('open', value);
-    },    
+    open: function (movie) {
+      let id = this.getId(movie);
+      this.$emit('open', id);
+    },
+
+    getId: function (movie) {
+      return movie.netflixid || movie.nfid
+    }
   }
 
 
