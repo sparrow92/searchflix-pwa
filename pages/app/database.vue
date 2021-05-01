@@ -2,8 +2,9 @@
   <div>
     <h1 class="mx-8">Ustawienia</h1>
     <SelectCountry />
-    <p class="px-8">
+    <p class="p-8">
       <Button @click.native="open">Blacklist</Button>
+      <span class="block" v-for="item in getBlacklist" :key="item.netflixid" @click="removeGenre(item.netflixid)">{{ item.genre }}</span>
     </p>
     
     <Blacklist :show="showBlacklist" @close="close" />
@@ -14,6 +15,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   layout: 'app',
 
@@ -23,7 +26,17 @@ export default {
     }
   },
 
+  computed: {
+    ...mapGetters([
+      'getBlacklist'
+    ])
+  },
+
   methods: {
+    ...mapActions([
+      'removeGenre'
+    ]),
+
     open() {
       this.showBlacklist = true
     },

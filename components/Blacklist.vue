@@ -9,16 +9,16 @@
         class="select-genres cursor-pointer flex-grow-1 w-full"
         v-model="selected"
         :options="genres"
-        :reduce="genre => genre.netflixid"
         label="genre"
-        @option:selected="selectGenres"
-        multiple
       >
         <template v-slot:option="option">
           {{ option.genre }}
         </template>
       </v-select>
-      <Button small>Dodaj</Button> 
+      <Button @click.native="selectGenres" small>Dodaj</Button> 
+    </div>
+    <div>
+      <span class="block" v-for="item in getBlacklist" :key="item.netflixid" @click="removeGenre(item.netflixid)">{{ item.genre }}</span>
     </div>
   </Modal>
 </template>
@@ -44,17 +44,18 @@ export default {
 
   computed: {
     ...mapGetters([
-
+      'getBlacklist'
     ])
   },
 
   methods: {
     ...mapActions([
-
+      'addGenre',
+      'removeGenre'
     ]),
 
     selectGenres() {
-      
+      this.addGenre(this.selected)
     },
 
     close: function() {
