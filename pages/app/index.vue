@@ -16,9 +16,8 @@ export default {
   layout: 'app',
 
   async asyncData() {
-    const movies = await mock.fetchMovies()
     const expiring = await mock.fetchExpiringMovies()
-    return { movies, expiring }
+    return { expiring }
   },
 
   data() {
@@ -30,7 +29,15 @@ export default {
 
   computed: {
     grouped() {
-      return this.groupBy(this.movies, (movie) => movie.year);
+      return this.groupBy(this.movies, (movie) => movie.expiredate);
+    },
+
+    movies() {
+      return this.expiring.map(movie => {
+        movie.nfid = movie.netflixid
+        delete movie.netflixid
+        return movie;
+      });      
     }
   },
 
