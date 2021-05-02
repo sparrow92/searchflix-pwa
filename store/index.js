@@ -1,7 +1,8 @@
 export const state = () => ({
   country: process.browser ? (localStorage.getItem('country') || null) : null,
   movies:  process.browser ? (JSON.parse(localStorage.getItem('movies')) || []) : [],
-  blacklist:  process.browser ? (JSON.parse(localStorage.getItem('blacklist')) || []) : []
+  blacklist:  process.browser ? (JSON.parse(localStorage.getItem('blacklist')) || []) : [],
+  query: process.browser ? (JSON.parse(localStorage.getItem('query')) || {}) : {},
 });
 
 export const getters = {
@@ -19,6 +20,10 @@ export const getters = {
 
   getBlacklist(state) {
     return state.blacklist
+  },
+
+  getQuery(state) {
+    return state.query
   }
 }
 
@@ -66,6 +71,10 @@ export const mutations = {
       state.blacklist.splice(state.blacklist.map(item => item.netflixid).indexOf(id), 1)
     }
   },
+
+  STORE_QUERY(state, payload) {
+    state.query = payload
+  },
 };
 
 export const actions = {
@@ -92,5 +101,10 @@ export const actions = {
   removeGenre({ commit, state }, id) {
     commit('REMOVE_GENRE', id);
     localStorage.setItem('blacklist', JSON.stringify(state.blacklist));
+  },
+
+  saveQuery({ commit, state }, query) {
+    commit('STORE_QUERY', query);
+    localStorage.setItem('query', JSON.stringify(state.query));
   }
 };
