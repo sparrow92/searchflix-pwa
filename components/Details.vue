@@ -65,7 +65,7 @@ export default {
 
     poster() {
       return this.images.find(image => {
-        return image.itype == 'bo166x236'
+        return image.itype == 'bo342x684'
       });
     },
 

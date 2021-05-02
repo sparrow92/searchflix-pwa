@@ -5,7 +5,7 @@
 
     <swiper :options="swiperOptions" class="w-screen">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
-        <Thumbnail :id="getId(movie)" @click.native="open(movie)" />
+        <Thumbnail :id="getId(movie)" :poster="movie.poster" @click.native="open(movie)" />
         
       </swiper-slide>
     </swiper>  
@@ -24,7 +24,7 @@ export default {
       swiperOptions: {
         slidesPerView: 'auto',
         loop: false,
-        spaceBetween: 10,
+        spaceBetween: 5,
         centeredSlides: false
       }
     }
@@ -47,6 +47,6 @@ export default {
 
 <style lang="postcss" scoped>
   .swiper-slide {
-    @apply w-52;
+    @apply w-44;
   }
 </style>

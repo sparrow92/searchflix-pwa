@@ -52,6 +52,10 @@ export default {
       this.id = value
       this.showDetails = true
     }
+  },
+
+  mounted() {
+    this.movies.map(movie => movie.poster = '')
   }
 }
 </script>
