@@ -24,7 +24,8 @@ export default {
     { src: '@/plugins/axios', mode: 'client' },
     { src: '@/plugins/v-click-outside', mode: 'client' },
     { src: '@/plugins/v-select', mode: 'client' },
-    { src: '@/plugins/vue-country-flag', mode: 'client' }
+    { src: '@/plugins/vue-country-flag', mode: 'client' },
+    { src: '@/plugins/lodash', mode: 'client' }
   ],
 
   components: true,
