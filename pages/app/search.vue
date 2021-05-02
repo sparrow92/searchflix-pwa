@@ -3,9 +3,9 @@
     <h1 class="mx-8">Szukaj</h1>
     <p class="mx-8">      
 
-      <span class="query" v-if="getQuery.name">
+      <span class="query" v-if="getQuery.query">
         <span class="title">Nazwa:</span>
-        <span>{{ getQuery.name }}</span>
+        <span>{{ getQuery.query }}</span>
       </span>
 
       <span class="query" v-if="getQuery.genre_list">
@@ -58,10 +58,14 @@
         <span>{{ getQuery.countrylist }}</span>
       </span>
 
-      <Button @click.native="open">Zaawansowane</Button>
+      <Button @click.native="openSearch">Zaawansowane</Button>
     </p>
-    
-    <SearchQuery :show="showSearch" @close="close" /> 
+
+    <Loader v-if="loading" />  
+    <Slider v-else :movies="movies" title="Wyniki" @open="openDetails" />
+
+    <Details :id="id" :show="showDetails" @close="closeDetails" /> 
+    <SearchQuery :show="showSearch" @close="closeSearch" @search="search" /> 
   </div>
 </template>
 
@@ -72,7 +76,11 @@ export default {
 
   data() {
     return {
-      showSearch: false
+      showSearch: false,
+      showDetails: false,
+      movies: [],
+      id: 0,
+      loading: false
     }
   },
 
@@ -83,13 +91,38 @@ export default {
   },
 
   methods: {
-    close: function() {
+    closeSearch: function() {
       this.showSearch = false;
     },
 
-    open: function() {
+    closeDetails: function() {
+      this.showDetails = false;
+    },
+
+    openSearch: function() {
       this.showSearch = true;
+    },
+
+    openDetails: function() {
+      this.showDetails = true;
+    },
+
+    search: function() {
+      return false;
+
+      this.loading = true;
+      this.$axios.get('/search', { params: this.getQuery }).then(response => {
+        this.movies = response.data.results
+      }).catch(() => {
+
+      }).then(() => {
+        this.loading = false;
+      })
     }
+  },
+
+  created() {
+    // this.search()
   }
 }
 </script>

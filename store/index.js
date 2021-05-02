@@ -2,7 +2,21 @@ export const state = () => ({
   country: process.browser ? (localStorage.getItem('country') || null) : null,
   movies:  process.browser ? (JSON.parse(localStorage.getItem('movies')) || []) : [],
   blacklist:  process.browser ? (JSON.parse(localStorage.getItem('blacklist')) || []) : [],
-  query: process.browser ? (JSON.parse(localStorage.getItem('query')) || {}) : {},
+  query: {
+    query: '',
+    limit: '', 
+    offset: '', 
+    genre_list: '',
+    type: '',
+    start_year: '',
+    end_year: '',
+    audiosubtitle_andor: '',
+    start_rating: '',
+    end_rating: '',
+    subtitle: '',
+    audio: '',
+    countrylist: '',
+  },
 });
 
 export const getters = {
@@ -103,8 +117,7 @@ export const actions = {
     localStorage.setItem('blacklist', JSON.stringify(state.blacklist));
   },
 
-  saveQuery({ commit, state }, query) {
+  saveQuery({ commit }, query) {
     commit('STORE_QUERY', query);
-    localStorage.setItem('query', JSON.stringify(state.query));
   }
 };

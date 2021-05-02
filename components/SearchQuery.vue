@@ -7,7 +7,7 @@
 
       <div class="mb-2">
         <label for="name">Nazwa: </label>
-        <input v-model="queryData.name" type="text" id="name" name="name" />
+        <input v-model="queryData.query" type="text" id="name" name="name" />
       </div>
 
       <div class="mb-2">
@@ -117,6 +117,7 @@ export default {
 
     search: function() {
       this.saveQuery(this.queryData)
+      this.$emit('search');
       this.close()
     },
 

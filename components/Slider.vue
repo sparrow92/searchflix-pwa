@@ -5,7 +5,7 @@
 
     <swiper :options="swiperOptions" class="w-screen">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
-        <Thumbnail :id="getId(movie)" :poster="movie.poster" @click.native="open(movie)" />
+        <Thumbnail :id="getId(movie)" :poster="movie.poster || movie.img" @click.native="open(movie)" />
         
       </swiper-slide>
     </swiper>  
