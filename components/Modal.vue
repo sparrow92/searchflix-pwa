@@ -12,8 +12,8 @@
       <Loader v-if="loading" />      
       <div
         :style="[(background && !loading) ? bgStyle : defaultStyle]"
-        class="relative w-full flex justify-between items-center p-5 rounded-t h-16"
-        :class="{'border-b border-gray-800': !loading}"
+        class="relative w-full flex justify-between items-center p-5 rounded-t"
+        :class="{'border-b border-gray-800': !loading, 'h-16': !background }"
       >
         <span class="modal__title font-semibold text-lg" v-if="!loading">
           <slot name="header"/>
