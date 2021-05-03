@@ -1,8 +1,13 @@
 <template>
-  <div class="transition-all duration-200 fixed top-0 justify-center ites-start md:items-center z-50 flex w-full min-h-screen overflow-y-auto bg-black bg-opacity-60" :class="show ? 'visible opacity-100' : 'invisible opacity-0'" v-body-scroll-lock="show">
+  <div 
+    class="transition-all duration-200 fixed top-0 justify-center ites-start md:items-center z-50 flex w-full min-h-screen overflow-y-scroll bg-black bg-opacity-60" 
+    :class="show ? 'visible opacity-100' : 'invisible opacity-0'" 
+    v-body-scroll-lock="show"
+  >
     <div 
-      class="transition-all transform duration-200 w-screen mx-3 mt-16 md:mt-0 md:mb-0 md:w-96 flex flex-col bg-gray-900 rounded shadow-lg" 
-      :class="show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50'"  v-click-outside="close"
+      class="transition-all absolute min-h-full top-10 mb-10 transform duration-200 mx-3 md:mt-0 md:mb-0 w-96 flex flex-col bg-gray-900 rounded shadow-lg" 
+      :class="show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50'"
+      v-click-outside="close"
     >
       <Loader v-if="loading" />      
       <div

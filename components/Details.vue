@@ -6,6 +6,7 @@
     </template>
 
     <h2 v-html="movie.title" />
+    <p v-html="movie.synopsis" />
 
   </Modal>
 </template>
@@ -27,7 +28,7 @@ export default {
     return {
       images: [],
       details: [],
-      modalKey: 0
+      modalKey: 0,
     }
   },
 
