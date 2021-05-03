@@ -13,7 +13,7 @@
         <span class="modal__title font-semibold text-lg" v-if="!loading">
           <slot name="header"/>
         </span>
-        <solid-x-icon class="w-7 h-7 text-red cursor-pointer absolute right-4 m-auto" :class="background ? 'top-4' : 'inset-y-0'" @click.native="close" />
+        <solid-x-icon class="w-7 h-7 text-red cursor-pointer absolute right-4 m-auto" :class="background ? 'top-4' : 'top-4'" @click.native="close" />
       </div>
 
       <div class="modal__body" v-if="!loading">

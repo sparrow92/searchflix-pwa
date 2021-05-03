@@ -1,12 +1,11 @@
 <template>
-  <Modal :show="show" @close="close" :background="photo.url" :key="modalKey">      
+  <Modal :show="show" @close="close" :background="photo.url" :key="modalKey" :loading="loading">      
     <template v-slot:header>
     <Button small v-if="!isSaved" @click.native="addToList">Zapisz na liście</Button>
     <Button small v-else @click.native="removeFromList">Usuń</Button>
     </template>
 
     <h2 v-html="movie.title" />
-
 
   </Modal>
 </template>
@@ -26,12 +25,9 @@ export default {
 
   data() {
     return {
-      images: [{ 
-        url: '', 
-        itype: 'bg'
-      }],
+      images: [],
       details: [],
-      modalKey: 0,
+      modalKey: 0
     }
   },
 
@@ -49,10 +45,15 @@ export default {
       'getMovies'
     ]),
 
+    loading() {
+      return this._.isEmpty(this.images) && this._.isEmpty(this.details)
+    },
+
     photo() {
-      return this.images.find(image => {
+      let image = this.images.find(image => {
         return image.itype == 'bg'
       });
+      return image || ''
     },
 
     movie() {
@@ -100,7 +101,12 @@ export default {
       this.removeMovie(this.id);
     },
 
+    reset() {
+       Object.assign(this.$data, this.$options.data())
+    },
+
     close: function() {
+      this.reset();
       this.$emit('close');
     },
   },
