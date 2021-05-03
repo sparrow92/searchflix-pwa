@@ -5,20 +5,20 @@
     v-body-scroll-lock="show"
   >
     <div 
-      class="transition-all absolute min-h-full top-10 mb-10 transform duration-200 mx-3 md:mt-0 md:mb-0 w-96 flex flex-col bg-gray-900 rounded shadow-lg" 
-      :class="show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50'"
+      class="transition-all absolute top-10 mb-10 transform duration-200 mx-3 md:mt-0 md:mb-0 w-96 flex flex-col bg-gray-900 rounded shadow-lg" 
+      :class="[show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50', loading ? 'min-h-full' : '']"
       v-click-outside="close"
     >
       <Loader v-if="loading" />      
       <div
         :style="[(background && !loading) ? bgStyle : defaultStyle]"
-        class="relative w-full flex justify-between items-center p-5"
+        class="relative w-full flex justify-between items-center p-5 rounded-t h-16"
         :class="{'border-b border-gray-800': !loading}"
       >
         <span class="modal__title font-semibold text-lg" v-if="!loading">
           <slot name="header"/>
         </span>
-        <solid-x-icon class="w-7 h-7 text-red cursor-pointer absolute right-4 m-auto" :class="background ? 'top-4' : 'top-4'" @click.native="close" />
+        <solid-x-icon class="w-7 h-7 text-red cursor-pointer absolute right-5 m-auto" :class="background ? 'top-5' : 'top-5'" @click.native="close" />
       </div>
 
       <div class="modal__body" v-if="!loading">
