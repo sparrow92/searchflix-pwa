@@ -25,7 +25,8 @@ export default {
     { src: '@/plugins/v-click-outside', mode: 'client' },
     { src: '@/plugins/v-select', mode: 'client' },
     { src: '@/plugins/vue-country-flag', mode: 'client' },
-    { src: '@/plugins/lodash', mode: 'client' }
+    { src: '@/plugins/lodash', mode: 'client' },
+    { src: '@/plugins/v-body-scroll-lock.js', mode: 'client' },
   ],
 
   components: true,
