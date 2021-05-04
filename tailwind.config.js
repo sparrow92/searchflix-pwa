@@ -16,6 +16,7 @@ module.exports = {
           'DEFAULT': '#db202c',
         },
         gray: colors.trueGray,
+        yellow: colors.amber,
       },
 
       backgroundImage: theme => ({

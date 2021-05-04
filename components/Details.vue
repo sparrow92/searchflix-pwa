@@ -5,6 +5,10 @@
     <Button small v-else @click.native="removeFromList">Usuń z listy</Button>
     </template>
 
+    <span v-if="!movie.netflixruntime" class="absolute top-0 right-0 uppercase font-semibold text-xs py-1 px-3 bg-gray-700 rounded-l">
+      Serial
+    </span>
+
     <span class="text-xl font-bold mr-2" v-html="movie.title" />
     <span class="text-gray-500 font-semibold" v-html="movie.year" />
     <p class="mt-3 mb-5" v-html="movie.synopsis" />
@@ -18,6 +22,14 @@
       <span class="text-gray-500">Czas trwania:</span>
       <span>{{ Math.round(movie.netflixruntime/60) }} min</span>
     </p>
+
+    <div v-if="movie.imdbrating" class="block rounded mt-4 flex items-center gap-3">
+      <img src="@/assets/images/imdb.png" class="w-8 h-8">
+      <span class="text-lg font-semibold text-yellow-400">
+        {{ movie.imdbrating }}
+        <span class="text-gray-500 text-base">/ 10</span>
+      </span>
+    </div>
 
   </Modal>
 </template>
