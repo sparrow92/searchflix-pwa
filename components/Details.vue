@@ -2,11 +2,22 @@
   <Modal :show="show" @close="close" :background="photo.url" :key="modalKey" :loading="loading">      
     <template v-slot:header>
     <Button small v-if="!isSaved" @click.native="addToList">Zapisz na liście</Button>
-    <Button small v-else @click.native="removeFromList">Usuń</Button>
+    <Button small v-else @click.native="removeFromList">Usuń z listy</Button>
     </template>
 
-    <h2 v-html="movie.title" />
-    <p v-html="movie.synopsis" />
+    <span class="text-xl font-bold mr-2" v-html="movie.title" />
+    <span class="text-gray-500 font-semibold" v-html="movie.year" />
+    <p class="mt-3 mb-5" v-html="movie.synopsis" />
+
+    <p v-if="movie.imdbgenre" class="text-sm mt-2 font-semibold">
+      <span class="text-gray-500">Kategorie:</span>
+      <span>{{ movie.imdbgenre }}</span>
+    </p>
+
+    <p v-if="movie.netflixruntime" class="text-sm mt-2 font-semibold">
+      <span class="text-gray-500">Czas trwania:</span>
+      <span>{{ Math.round(movie.netflixruntime/60) }} min</span>
+    </p>
 
   </Modal>
 </template>

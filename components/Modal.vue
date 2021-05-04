@@ -13,12 +13,13 @@
       <div
         :style="[(background && !loading) ? bgStyle : defaultStyle]"
         class="relative w-full flex justify-between items-center p-5 rounded-t"
-        :class="{'border-b border-gray-800': !loading, 'h-16': !background }"
+        :class="{'border-b border-gray-800 h-16': !background}"
       >
-        <span class="modal__title font-semibold text-lg" v-if="!loading">
+        <span class="modal__title font-semibold text-lg z-50" v-if="!loading">
           <slot name="header"/>
         </span>
-        <solid-x-icon class="w-7 h-7 text-red cursor-pointer absolute right-5 m-auto" :class="background ? 'top-5' : 'top-5'" @click.native="close" />
+        <solid-x-icon class="w-7 h-7 p-1 rounded-full bg-gray-900 bg-opacity-60 text-white cursor-pointer absolute right-5 m-auto" :class="background ? 'top-5' : 'top-5'" @click.native="close" />
+        <div v-if="background" class="absolute bottom-0 inset-x-0 z-10 h-48 bg-gradient-to-t from-gray-900 to-transparent"></div>
       </div>
 
       <div class="modal__body" v-if="!loading">
