@@ -1,7 +1,7 @@
 <template>
   <div class="my-4">
 
-    <h2 class="ml-8">{{ title }}</h2>
+    <h2 class="ml-8 capitalize">{{ title }}</h2>
 
     <swiper :options="swiperOptions" class="w-screen">
       <swiper-slide v-for="(movie, index) in movies" :key="index">

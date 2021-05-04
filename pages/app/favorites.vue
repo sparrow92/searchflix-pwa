@@ -1,18 +1,9 @@
 <template>
   <div>
     <h1 class="mx-8">Do obejrzenia</h1>
-    <Loader v-if="loading" />      
-    <div v-else class="grid mx-8 gap-4">
-      <div 
-        @click="open(movie.id)" 
-        v-for="movie in getMovies" 
-        :key="movie.id" 
-        :style="[bgStyle, { backgroundImage: `url(${movie.image})` }]" 
-        class="relative flex justify-between items-center"
-      >
-        <solid-star-icon class="w-7 h-7 text-red shadow-2xl cursor-pointer absolute right-2 top-2 m-auto" @click="removeMovie(movie.id)"  />
-      </div>
-    </div>
+    <Loader v-if="loading" />
+    <Slider v-else v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="group.type === 'movie' ? 'filmy' : 'seriale'" @open="open" />   
+
     <Details :id="id" :show="showDetails" @close="close" /> 
   </div>
 </template>
@@ -36,6 +27,16 @@ export default {
       'getMovies'
     ]),
 
+    grouped() {
+      let obj = this.groupBy(this.getMovies, (movie) => movie.type);
+      return Object.keys(obj).map(key => {
+        return { 
+          type: key, 
+          movies: obj[key] 
+        }
+      })
+    },
+
     bgStyle() {
       return {
         width: '120px',
@@ -51,6 +52,10 @@ export default {
     ...mapActions([
       'removeMovie'
     ]),
+
+    groupBy(arr, f) {
+      return arr.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
+    },
 
     close: function() {
       this.showDetails = false;

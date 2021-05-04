@@ -88,6 +88,10 @@ export default {
       return movie || ''
     },
 
+    type() {
+      return this.movie.netflixruntime ? 'movie' : 'series'
+    },
+
     poster() {
       return this.images.find(image => {
         return image.itype == 'bo342x684'
@@ -96,7 +100,7 @@ export default {
 
     isSaved() {
       let array = this.getMovies.filter(movie => {
-        return movie.id == this.id
+        return movie.netflixid == this.id
       })
       
       return array.length > 0
@@ -118,7 +122,7 @@ export default {
     },
 
     addToList() {
-      this.addMovie({ id: this.id, image: this.poster.url})
+      this.addMovie({ netflixid: this.id, poster: this.poster.url, type: this.type })
     },
 
     removeFromList() {

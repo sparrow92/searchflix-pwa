@@ -48,7 +48,7 @@ export const mutations = {
 
   ADD_MOVIE(state, movie) {
     let array = state.movies.filter(item => {
-      return item.id === movie.id
+      return item.netflixid === movie.id
     });
 
     if (!array.length) {
@@ -58,11 +58,11 @@ export const mutations = {
 
   REMOVE_MOVIE(state, id) {
     let array = state.movies.filter(item => {
-      return item.id === id
+      return item.netflixid === id
     });
 
     if (array.length) {
-      state.movies.splice(state.movies.map(item => item.id).indexOf(id), 1)
+      state.movies.splice(state.movies.map(item => item.netflixid).indexOf(id), 1)
     }
   },
 
