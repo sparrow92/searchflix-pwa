@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="ml-8">Strona Główna</h1>
-    <Slider v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="group.date" @open="open" />
+    <Slider v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="$moment(group.date, 'YYYY-MM-DD').fromNow()" @open="open" />
 
     <Details :id="id" :show="showDetails" @close="close" /> 
 

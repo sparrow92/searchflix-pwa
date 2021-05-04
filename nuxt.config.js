@@ -27,6 +27,7 @@ export default {
     { src: '@/plugins/vue-country-flag', mode: 'client' },
     { src: '@/plugins/lodash', mode: 'client' },
     { src: '@/plugins/v-body-scroll-lock.js', mode: 'client' },
+    { src: '@/plugins/moment.js', mode: 'client' },
   ],
 
   components: true,
@@ -34,13 +35,19 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
     '@nuxt-hero-icons/outline/nuxt',
-    '@nuxt-hero-icons/solid/nuxt'
+    '@nuxt-hero-icons/solid/nuxt',
+    '@nuxtjs/moment',
   ],
 
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
   ],
+
+  moment: {
+    defaultLocale: 'pl',
+    locales: ['pl']
+  },
 
   axios: {
     baseURL: `https://${process.env.X_RAPIDAPI_HOST}`,
