@@ -11,6 +11,10 @@
   }
 }
 
+html {
+  @apply overflow-x-hidden;
+}
+
 body {
   @apply text-white;
 }

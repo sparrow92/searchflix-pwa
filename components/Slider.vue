@@ -8,6 +8,8 @@
         <Thumbnail :id="getId(movie)" :poster="movie.poster || movie.img" @click.native="open(movie)" />
         
       </swiper-slide>
+      <div class="swiper-button-prev cursor-pointer mx-5" slot="button-prev"></div>
+      <div class="swiper-button-next cursor-pointer mx-5" slot="button-next"></div>
     </swiper>  
   </div>
 </template>
@@ -25,7 +27,12 @@ export default {
         slidesPerView: 'auto',
         loop: false,
         spaceBetween: 5,
-        centeredSlides: false
+        centeredSlides: false,
+        allowTouchMove: this.$device.isMobileOrTablet,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
       }
     }
   },
@@ -48,5 +55,8 @@ export default {
 <style lang="postcss" scoped>
   .swiper-slide {
     @apply w-44;
+  }
+  .swiper-button-next, .swiper-button-prev {
+    @apply text-white hidden md:flex;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white bg-opacity-10">
+  <div class="bg-white bg-opacity-10 cursor-pointer">
     <div class="w-auto bg-cover" :style="`background-image: url(${photo}); padding-top: 142%;`"></div>
     <!-- <div class="w-auto" style="padding-top: 142%;"></div> -->
   </div>
