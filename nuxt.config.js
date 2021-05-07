@@ -16,7 +16,7 @@ export default {
   },
 
   css: [
-    'swiper/swiper.min.css'
+    'swiper/css/swiper.min.css'
   ],
 
   plugins: [
@@ -37,6 +37,7 @@ export default {
     '@nuxt-hero-icons/outline/nuxt',
     '@nuxt-hero-icons/solid/nuxt',
     '@nuxtjs/moment',
+    '@nuxtjs/device',
   ],
 
   modules: [
