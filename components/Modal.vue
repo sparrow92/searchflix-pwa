@@ -60,7 +60,7 @@ export default {
         handler: this.handler,
         middleware: this.middleware,
         events: ['dblclick', 'click'],
-        isActive: true
+        isActive: false
       },
       backgroundImage: '',
       defaultStyle: {
