@@ -5,7 +5,7 @@
     <Button small v-else @click.native="removeFromList">Usuń z listy</Button>
     </template>
 
-    <span v-if="!movie.netflixruntime" class="absolute top-0 right-0 uppercase font-semibold text-xs py-1 px-3 bg-gray-700 rounded-l">
+    <span v-if="!movie.netflixruntime || false" class="absolute top-0 right-0 uppercase font-semibold text-xs py-1 px-3 bg-gray-700 rounded-l">
       Serial
     </span>
 
