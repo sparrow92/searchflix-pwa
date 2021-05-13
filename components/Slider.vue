@@ -1,9 +1,9 @@
 <template>
-  <div class="my-4">
+  <div class="my-4 w-full">
 
     <h2 class="ml-8 capitalize">{{ title }}</h2>
 
-    <swiper :options="swiperOptions" class="w-screen">
+    <swiper :options="swiperOptions" class="w-full">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
         <Thumbnail :id="getId(movie)" :poster="movie.poster || movie.img" @click.native="open(movie)" />
         
@@ -58,5 +58,8 @@ export default {
   }
   .swiper-button-next, .swiper-button-prev {
     @apply text-white hidden md:flex;
+  }
+  .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    @apply opacity-5;
   }
 </style>

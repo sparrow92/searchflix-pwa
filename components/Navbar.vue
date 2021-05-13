@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed flex md:justify-between items-center bottom-0 md:top-0 w-screen h-16 md:px-8 bg-black dark:bg-gray-700 shadow-lg border-t border-gray-900 dark:border-gray-600 z-40">
+  <div class="fixed flex md:justify-between items-center bottom-0 md:top-0 w-full h-16 md:px-8 bg-black dark:bg-gray-700 shadow-lg border-t border-gray-900 dark:border-gray-600 z-40">
     
     <Logo class="hidden md:flex h-10 mr-auto" />
 
