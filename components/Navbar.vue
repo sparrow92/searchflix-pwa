@@ -1,33 +1,38 @@
 <template>
-  <div class="fixed flex justify-around items-center bottom-0 w-screen h-16 bg-black dark:bg-gray-700 shadow-lg border-t border-gray-900 dark:border-gray-600 z-40">
+  <div class="fixed flex md:justify-between items-center bottom-0 md:top-0 w-screen h-16 md:px-8 bg-black dark:bg-gray-700 shadow-lg border-t border-gray-900 dark:border-gray-600 z-40">
     
-    <div >
-      <NuxtLink class="flex flex-col items-center text-gray-300" to="/app">
-        <solid-fire-icon class="w-7 h-7" />
-        <span class="text-xs font-bold">Główna</span>
-      </NuxtLink>    
+    <Logo class="hidden md:flex h-10 mr-auto" />
+
+    <div class="flex justify-around items-center h-full w-full md:w-auto md:gap-10">
+      <div>
+        <NuxtLink class="flex flex-col items-center text-gray-300" to="/app">
+          <solid-fire-icon class="w-7 h-7 md:hidden" />
+          <span class="text-xs md:text-lg font-bold md:font-medium">Główna</span>
+        </NuxtLink>    
+      </div>
+
+      <div>
+        <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/search') }" class="flex flex-col items-center text-gray-300" to="/app/search">
+          <solid-search-icon class="w-7 h-7 md:hidden" />
+          <span class="text-xs md:text-lg font-bold md:font-medium">Szukaj</span>
+        </NuxtLink>    
+      </div>
+
+      <div>
+        <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/favorites') }" class="flex flex-col items-center text-gray-300" to="/app/favorites">
+          <outline-clock-icon class="w-7 h-7 md:hidden" />
+          <span class="text-xs md:text-lg font-bold md:font-medium">Playlista</span>
+        </NuxtLink>    
+      </div>
+
+      <div>
+        <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/database') }" class="flex flex-col items-center text-gray-300" to="/app/database">
+          <solid-cog-icon class="w-7 h-7 md:hidden" />
+          <span class="text-xs md:text-lg font-bold md:font-medium">Ustawienia</span>
+        </NuxtLink>    
+      </div>      
     </div>
 
-    <div>
-      <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/search') }" class="flex flex-col items-center text-gray-300" to="/app/search">
-        <solid-search-icon class="w-7 h-7" />
-        <span class="text-xs font-bold">Szukaj</span>
-      </NuxtLink>    
-    </div>
-
-    <div>
-      <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/favorites') }" class="flex flex-col items-center text-gray-300" to="/app/favorites">
-        <outline-clock-icon class="w-7 h-7" />
-        <span class="text-xs font-bold">Playlista</span>
-      </NuxtLink>    
-    </div>
-
-    <div>
-      <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/database') }" class="flex flex-col items-center text-gray-300" to="/app/database">
-        <solid-cog-icon class="w-7 h-7" />
-        <span class="text-xs font-bold">Ustawienia</span>
-      </NuxtLink>    
-    </div>
   </div>
 </template>
 
