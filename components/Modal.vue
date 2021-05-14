@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="modal__overlay transition-all duration-200 fixed top-0 justify-center ites-start md:items-center z-50 flex w-full min-h-screen overflow-y-scroll bg-black bg-opacity-60" 
+    class="modal__overlay transition-all duration-200 fixed top-0 justify-center ites-start md:items-center z-50 flex w-full min-h-screen overflow-y-auto bg-black bg-opacity-60" 
     :class="[show ? 'visible opacity-100' : 'invisible opacity-0', type]" 
     v-body-scroll-lock="show"
   >
