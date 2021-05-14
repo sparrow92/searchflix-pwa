@@ -19,7 +19,7 @@
       </div>
 
       <div>
-        <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/favorites') }" class="flex flex-col items-center text-gray-300" to="/app/favorites">
+        <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/playlist') }" class="flex flex-col items-center text-gray-300" to="/app/playlist">
           <outline-clock-icon class="w-7 h-7 md:hidden" />
           <span class="text-xs md:text-lg font-bold md:font-medium">Playlista</span>
         </NuxtLink>    
