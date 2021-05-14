@@ -26,7 +26,7 @@
       </div>
 
       <div>
-        <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/database') }" class="flex flex-col items-center text-gray-300" to="/app/database">
+        <NuxtLink :class="{'nuxt-link-exact-active': isRouteActive('/app/settings') }" class="flex flex-col items-center text-gray-300" to="/app/settings">
           <solid-cog-icon class="w-7 h-7 md:hidden" />
           <span class="text-xs md:text-lg font-bold md:font-medium">Ustawienia</span>
         </NuxtLink>    
