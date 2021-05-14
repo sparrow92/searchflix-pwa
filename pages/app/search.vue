@@ -104,6 +104,7 @@ export default {
     },
 
     openDetails: function() {
+      this.id = null;
       this.showDetails = true;
     },
 
