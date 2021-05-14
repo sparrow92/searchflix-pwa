@@ -111,7 +111,7 @@ export default {
 <style lang="postcss">
 .modal {
   &__body {
-    @apply p-5;
+    @apply relative p-5;
   }
 }
 </style>
