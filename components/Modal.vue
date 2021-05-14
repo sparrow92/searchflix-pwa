@@ -1,7 +1,7 @@
 <template>
   <div 
     class="modal__overlay transition-all duration-200 fixed top-0 justify-center ites-start md:items-center z-50 flex w-full min-h-screen overflow-y-scroll bg-black bg-opacity-60" 
-    :class="show ? 'visible opacity-100' : 'invisible opacity-0'" 
+    :class="[show ? 'visible opacity-100' : 'invisible opacity-0', type]" 
     v-body-scroll-lock="show"
   >
     <div 
@@ -30,13 +30,7 @@
 </template>
 
 <script>
-import vClickOutside from 'v-click-outside'
-
 export default {
-  // directives: {
-  //   clickOutside: vClickOutside.directive
-  // },
-
   props: {
     show: {
       type: Boolean,
@@ -51,6 +45,11 @@ export default {
     background: {
       type: String,
       default: () => ''
+    },
+
+    type: {
+      type: String,
+      default: () => ''
     }
   },
 
@@ -60,7 +59,7 @@ export default {
         handler: this.handler,
         middleware: this.middleware,
         events: ['dblclick', 'click'],
-        isActive: false
+        isActive: true
       },
       backgroundImage: '',
       defaultStyle: {
@@ -98,7 +97,7 @@ export default {
     },
     
     middleware(event) {
-      return event.target.className.includes('modal__overlay')
+      return event.target.className.includes(this.type)
     }
   },
 

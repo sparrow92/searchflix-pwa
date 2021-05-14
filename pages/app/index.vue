@@ -36,7 +36,8 @@ export default {
         }
       })
       return array.reverse()
-    }
+    },
+
   },
 
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <Modal :show="show" @close="close">
+  <Modal :show="show" @close="close" type="search">
       
       <template v-slot:header>
         Szukania zaawansowane

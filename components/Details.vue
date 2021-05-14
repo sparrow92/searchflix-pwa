@@ -1,5 +1,5 @@
 <template>
-  <Modal :show="show" @close="close" :background="photo.url" :key="modalKey" :loading="loading">      
+  <Modal :show="show" @close="close" :background="photo.url" :key="modalKey" :loading="loading" type="details">      
     <template v-slot:header>
     <Button small v-if="!isSaved" @click.native="addToList">Zapisz na liście</Button>
     <Button small v-else @click.native="removeFromList">Usuń z listy</Button>

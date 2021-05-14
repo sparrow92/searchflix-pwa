@@ -1,5 +1,5 @@
 <template>
-  <Modal :show="show" @close="close">      
+  <Modal :show="show" @close="close" type="blacklist">      
     <template v-slot:header>
       Czarna lista
     </template>
