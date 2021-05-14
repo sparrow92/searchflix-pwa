@@ -5,8 +5,8 @@
     v-body-scroll-lock="show"
   >
     <div 
-      class="transition-all absolute top-10 mb-10 transform duration-200 mx-3 md:mt-0 md:mb-0 w-96 flex flex-col bg-gray-900 rounded shadow-lg" 
-      :class="[show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50', loading ? 'min-h-full' : '']"
+      class="transition-all absolute top-10 mb-10 transform duration-300 mx-3 md:mt-0 md:mb-0 w-96 flex flex-col bg-gray-900 rounded shadow-lg" 
+      :class="[show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50', loading ? 'h-72' : 'h-auto']"
       v-click-outside="vcoConfig"
     >
       <Loader v-if="loading" />      
