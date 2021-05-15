@@ -60,7 +60,8 @@ export default {
       short_name: 'Searchflix',
       lang: 'pl',
       display: 'standalone',
-      background_color: '#000000',
+      // background_color: '#000000',
+      background_color: '#eeeeee',
       theme_color: '#000000'
 
     },
