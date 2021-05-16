@@ -60,17 +60,9 @@ export default {
       short_name: 'Searchflix',
       lang: 'pl',
       display: 'standalone',
-      // background_color: '#000000',
-      background_color: '#eeeeee',
+      background_color: '#000000',
       theme_color: '#000000'
-
-    },
-    icon: [
-      // purpose: 'maskable',
-      // source: '~/static/searchflix.png',
-      // fileName: 'searchflix.png',
-      ]
-    
+    }
   },
 
   build: {
