@@ -19,6 +19,10 @@ module.exports = {
         yellow: colors.amber,
       },
 
+      spacing: {
+        184: '46rem',
+       },
+
       backgroundImage: theme => ({
         'searchflix': "url('~assets/images/background.jpg')",
       })

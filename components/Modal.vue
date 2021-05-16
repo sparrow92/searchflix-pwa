@@ -1,11 +1,11 @@
 <template>
   <div 
-    class="modal__overlay transition-all duration-200 fixed top-0 justify-center ites-start md:items-center z-50 flex w-full min-h-screen overflow-y-auto bg-black bg-opacity-60" 
+    class="modal__overlay transition-all duration-200 px-3 py-10 fixed top-0 justify-center ites-start md:items-center z-50 flex w-full min-h-screen overflow-y-auto bg-black bg-opacity-60" 
     :class="[show ? 'visible opacity-100' : 'invisible opacity-0', type]" 
     v-body-scroll-lock="show"
   >
     <div 
-      class="transition-all absolute top-10 mb-10 transform duration-300 mx-3 md:mt-0 md:mb-0 w-96 flex flex-col bg-gray-900 rounded shadow-lg" 
+      class="transition-all absolute top-10 transform duration-300 inset-x-3 md:mx-auto md:w-184 flex flex-col bg-gray-900 rounded shadow-lg" 
       :class="[show ? 'visible opacity-100 scale-100' : 'invisible opacity-0 scale-50', loading ? 'h-72' : 'h-auto']"
       v-click-outside="vcoConfig"
     >
