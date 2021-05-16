@@ -69,41 +69,6 @@ export default {
       // purpose: 'maskable',
       // source: '~/static/searchflix.png',
       // fileName: 'searchflix.png',
-      {
-        "src": "~/assets/images/icons/64x64.png",
-        "sizes": "64x",
-        "type": "image/png"
-      },
-      {
-        "src": "~/assets/images/icons/120x120.png",
-        "sizes": "120x",
-        "type": "image/png"
-      },
-      {
-        "src": "~/assets/images/icons/144x144.png",
-        "sizes": "144x",
-        "type": "image/png"
-      },
-      {
-        "src": "~/assets/images/icons/152x152.png",
-        "sizes": "152x",
-        "type": "image/png"
-      },
-      {
-        "src": "~/assets/images/icons/192x192.png",
-        "sizes": "192x",
-        "type": "image/png"
-      },
-      {
-        "src": "~/assets/images/icons/384x384.png",
-        "sizes": "384x",
-        "type": "image/png"
-      },
-      {
-        "src": "~/assets/images/icons/512x512.png",
-        "sizes": "512x",
-        "type": "image/png"
-      }
       ]
     
   },
