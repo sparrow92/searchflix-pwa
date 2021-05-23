@@ -60,8 +60,9 @@
         <input v-model="queryData.countrylist" type="text" id="countrylist" name="countrylist" />
       </div>
 
-      <Button @click.native="search">Szukaj</Button>
-
+      <template v-slot:footer>
+        <Button @click.native="search">Szukaj</Button>
+      </template>
   </Modal>
 </template>
 
