@@ -19,6 +19,10 @@ module.exports = {
         yellow: colors.amber,
       },
 
+      minHeight: {
+        'modal': '70vh'
+      },
+
       spacing: {
         184: '46rem',
        },
