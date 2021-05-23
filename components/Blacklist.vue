@@ -4,22 +4,33 @@
       Czarna lista
     </template>
 
-    <div class="flex justify-between items-start gap-2">
+    <div class="flex justify-between items-start gap-2 mb-5">
       <v-select 
-        class="select-genres cursor-pointer flex-grow-1 w-full"
+        class="select-genres cursor-pointer w-full"
         v-model="selected"
-        :options="genres"
+        :options="filteredGenres"
         label="genre"
       >
         <template v-slot:option="option">
           {{ option.genre }}
         </template>
       </v-select>
-      <Button @click.native="selectGenres" small>Dodaj</Button> 
     </div>
-    <div>
-      <span class="block" v-for="item in getBlacklist" :key="item.netflixid" @click="removeGenre(item.netflixid)">{{ item.genre }}</span>
+    <div v-if="getBlacklist.length">
+      <div class="block py-5 border-gray-800 flex justify-between items-center" :class="(index == 0) ? 'border-t-0' : 'border-t'" v-for="(item, index) in getBlacklist" :key="item.netflixid">
+        <span class="">{{ item.genre }}</span>
+        <outline-trash-icon class="w-7 h-7 cursor-pointer text-red" @click.native="removeGenre(item.netflixid)" />
+      </div>
     </div>
+    <div v-else class="flex flex-col items-center justify-center text-gray-800 my-32">
+      <outline-trash-icon class="w-10 h-10" />
+      <span class="font-bold text-2xl">Brak elementów</span>
+    </div>      
+
+    <template v-slot:footer>
+      <Button @click.native="close">Zamknij</Button>
+    </template>
+
   </Modal>
 </template>
 
@@ -35,6 +46,14 @@ export default {
     }
   },
 
+  watch: {
+    selected(val) {
+      if (val) {
+        this.selectGenres();
+      }
+    }
+  },
+
   data() {
     return {
       selected: null,
@@ -45,7 +64,13 @@ export default {
   computed: {
     ...mapGetters([
       'getBlacklist'
-    ])
+    ]),
+
+    filteredGenres() {
+      return this._.differenceWith(this.genres, this.getBlacklist, function(o1, o2) {
+        return o1['netflixid'] === o2['netflixid']
+      })
+    }
   },
 
   methods: {
