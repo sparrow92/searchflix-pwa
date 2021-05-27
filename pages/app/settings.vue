@@ -12,8 +12,14 @@
       </div>
 
 
-      <Button @click.native="open">Blacklist</Button>
-      <span class="block" v-for="item in getBlacklist" :key="item.netflixid" @click="removeGenre(item.netflixid)">{{ item.genre }}</span>
+      <Button @click.native="open" small>Dodaj gatunek</Button>
+      <div class="flex flex-wrap">
+        <span class="flex items-center gap-2 rounded-full py-2 px-5 mx-0.5 my-1 text-sm font-semibold bg-white text-gray-800 transition-all duration-200 bg-opacity-80 hover:bg-opacity-100 whitespace-nowrap cursor-pointer" v-for="item in getBlacklist" :key="item.netflixid">
+          {{ item.genre }}
+          <solid-x-icon @click.native="removeGenre(item.netflixid)" class="w-3 h-3 cursor-pointer" />
+        </span>        
+      </div>
+
     </div>
     
     <Blacklist :show="showBlacklist" @close="close" />
