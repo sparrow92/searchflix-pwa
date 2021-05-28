@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="ml-8">Strona Główna</h1>
+    <Heading title="Strona Główna" big />
     <Slider v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="$moment(group.date, 'YYYY-MM-DD').fromNow()" @open="open" />
 
     <Details :id="id" :show="showDetails" @close="close" /> 

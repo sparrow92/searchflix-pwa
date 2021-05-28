@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1 class="mx-8">Szukaj</h1>
+    <Heading title="Szukaj" big>
+      <Button @click.native="openSearch">Zaawansowane</Button>
+    </Heading>
+
     <p class="mx-8">      
 
       <span class="query" v-if="getQuery.query">
@@ -58,7 +61,7 @@
         <span>{{ getQuery.countrylist }}</span>
       </span>
 
-      <Button @click.native="openSearch">Zaawansowane</Button>
+      
     </p>
 
     <Loader v-if="loading" />  

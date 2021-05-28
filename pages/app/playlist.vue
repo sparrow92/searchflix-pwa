@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 class="mx-8">Do obejrzenia</h1>
+    <Heading title="Do obejrzenia" big />
+
     <Loader v-if="loading" />
     <Slider v-else v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="group.type === 'movie' ? 'filmy' : 'seriale'" @open="open" />   
 
