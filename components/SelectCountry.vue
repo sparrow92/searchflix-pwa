@@ -1,6 +1,6 @@
 <template>
-  <div class="m-8">
-    <h1 class="text-xl font-bold">Wybierz swój kraj:</h1>
+  <div class="px-8 w-full">
+    <Heading title="Wybierz swój kraj" />
     <v-select 
       class="select-country cursor-pointer"
       v-model="selected"
