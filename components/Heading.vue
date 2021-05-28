@@ -6,7 +6,7 @@
         <slot />      
       </div>
     </div>
-    <div class="bg-gradient-to-r from-gray-500 via-gray-800 to-transparent mb-5" :class="big ? 'h-0.5' : 'h-px'"></div> 
+    <div class="bg-gradient-to-r mb-5" :class="big ? 'from-red-800 via-red to-transparent h-0.5' : 'from-gray-500 via-gray-600 to-transparent h-px'"></div> 
   </div>
 
 </template>
