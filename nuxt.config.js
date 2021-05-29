@@ -73,6 +73,11 @@ export default {
     }
   },
 
+  loading: {
+    color: '#db202c',
+    height: '4px'
+  },
+
   env: {
     NODE_ENV: process.env.NODE_ENV,
     X_RAPIDAPI_KEY: process.env.X_RAPIDAPI_KEY,
