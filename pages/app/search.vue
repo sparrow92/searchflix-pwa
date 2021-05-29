@@ -1,7 +1,7 @@
 <template>
   <div>
     <Heading title="Szukaj" big>
-      <Button @click.native="openSearch">Zaawansowane</Button>
+      <Button @click.native="openSearch" icon="adjustments" type="light">Zaawansowane</Button>
     </Heading>
 
     <p class="mx-8">      

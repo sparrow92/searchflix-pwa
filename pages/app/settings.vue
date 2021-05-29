@@ -6,7 +6,7 @@
     <div class="p-8">
       <!-- <h1 class="text-xl font-bold">Czarna lista</h1> -->
       <Heading title="Czarna lista">
-        <Button @click.native="open" small>Dodaj gatunek</Button>
+        <Button @click.native="open" icon="plus" small>Dodaj gatunek</Button>
       </Heading>
       <div class="flex items-center gap-3 p-3 bg-opacity-50 bg-gray-700 rounded text-gray-400 font-semibold mb-3">
         <div class="flex-grow">

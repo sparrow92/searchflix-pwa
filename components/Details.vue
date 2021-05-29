@@ -1,8 +1,8 @@
 <template>
   <Modal :show="show" @close="close" :background="photo.url" :key="modalKey" :loading="loading" type="details">      
     <template v-slot:header>
-    <Button small v-if="!isSaved" @click.native="addToList">Zapisz na liście</Button>
-    <Button small v-else @click.native="removeFromList">Usuń z listy</Button>
+    <Button small v-if="!isSaved" @click.native="addToList" icon="plus">Zapisz na liście</Button>
+    <Button small v-else @click.native="removeFromList" icon="minus-sm">Usuń z listy</Button>
     </template>
 
     <span v-if="movie.netflixruntime === 0" class="absolute top-0 right-0 uppercase font-semibold text-xs py-1 px-3 bg-gray-700 rounded-l">
