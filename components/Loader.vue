@@ -12,7 +12,6 @@
     width: 40px;
     height: 40px;
     position: relative;
-    margin: 100px auto;
 
     &__wrapper {
       @apply flex justify-center items-center top-0 left-0 w-full h-full; 

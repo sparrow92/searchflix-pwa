@@ -1,19 +1,25 @@
 <template>
   <div class="px-8 w-full">
     <Heading title="Wybierz swój kraj" :border="border" />
-    <v-select 
-      class="select-country cursor-pointer"
-      v-model="selected"
-      :options="countries"
-      :reduce="country => country.id"
-      label="country"
-      @option:selected="selectCountry"
-    >
-      <template v-slot:option="option">
-        <country-flag :country="option.countrycode" size="small"/>
-        {{ option.country }}
-      </template>
-    </v-select>
+    <div class="flex items-center w-full h-16">
+      <Loader v-if="!selected" />
+      <v-select
+        v-else
+        class="select-country cursor-pointer w-full max-w-md"
+        v-model="selected"
+        :options="countries"
+        :reduce="country => country.id"
+        label="country"
+        :clearable="false"
+        @option:selected="selectCountry"
+      >
+        <template v-slot:option="option">
+          <country-flag :country="option.countrycode" size="small"/>
+          {{ option.country }}
+        </template>
+      </v-select>      
+    </div>
+
   </div>
 </template>
 
@@ -79,9 +85,5 @@ export default {
   .select-country .vs__clear,
   .select-country .vs__open-indicator {
     fill: #394066;
-  }
-
-  .select-country .vs__selected {
-    margin: 0 2px;
   }
 </style>

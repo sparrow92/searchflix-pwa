@@ -16,7 +16,8 @@ export default {
   },
 
   css: [
-    'swiper/css/swiper.min.css'
+    'swiper/css/swiper.min.css',
+    '~/assets/css/v-select.css',
   ],
 
   plugins: [
