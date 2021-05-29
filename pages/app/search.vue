@@ -1,8 +1,18 @@
 <template>
-  <div>
-    <Heading title="Szukaj" big>
-      <Button @click.native="openSearch" icon="adjustments" type="light">Zaawansowane</Button>
+  <div class="w-full">
+    <Heading title="Wyszukiwarka" big>
+      <div class="hidden md:flex">
+        <Button @click.native="openSearch" icon="adjustments" type="light" :count="18" small>Filtry</Button>        
+      </div>
     </Heading>
+
+    <div class="flex flex-wrap md:flex-nowrap items-end gap-3 md:gap-10 w-full px-8 mb-5 md:my-5">
+      <input type="text" class="flex-grow block bg-transparent border-b border-white focus:border-red py-3 text-white text-2xl outline-none mb-5 md:mb-0">
+      <div class="md:hidden">
+        <Button @click.native="openSearch" icon="adjustments" type="light" :count="18">Filtry</Button>
+      </div>
+      <Button @click.native="search" icon="search">Szukaj</Button>
+    </div>
 
     <p class="mx-8">      
 
