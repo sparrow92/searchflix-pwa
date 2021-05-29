@@ -1,9 +1,7 @@
 <template>
   <div>
     <Heading title="Strona Główna" class="mb-5" big>
-      <span>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet minima reprehenderit dicta, consectetur ipsa perferendis asperiores velit voluptatibus ipsam eos saepe blanditiis commodi rerum iusto animi quis natus enim tenetur!
-      </span>
+      <span>Poniższa lista przedstawia produkcje, który w najbliższym czasie znikną z oferty Netflixa.</span>
     </Heading>
     <Slider v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="$moment(group.date, 'YYYY-MM-DD').fromNow()" @open="open" />
 

@@ -1,9 +1,7 @@
 <template>
   <div>
     <Heading title="Ustawienia" class="mb-5" big>
-      <span>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet minima reprehenderit dicta, consectetur ipsa perferendis asperiores velit voluptatibus ipsam eos saepe blanditiis commodi rerum iusto animi quis natus enim tenetur!
-      </span>
+      <span>Poniższe ustawienia będą mogły zostać wzięte pod uwagę przy wyszukiwaniu filmów.</span>
     </Heading>
     <SelectCountry />
     <div class="p-8">
