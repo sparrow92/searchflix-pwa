@@ -1,7 +1,6 @@
 <template>
-  <div class="my-4 w-full">
-
-    <h2 class="ml-8 capitalize">{{ title }}</h2>
+  <div class="w-full mb-5">
+    <Heading class="mx-8" :title="title" :border="false" />
 
     <swiper :options="swiperOptions" class="w-full">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
