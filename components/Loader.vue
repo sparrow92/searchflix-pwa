@@ -15,7 +15,7 @@
     margin: 100px auto;
 
     &__wrapper {
-      @apply fixed flex justify-center items-center top-0 left-0 w-full h-full; 
+      @apply flex justify-center items-center top-0 left-0 w-full h-full; 
     }
   }
 

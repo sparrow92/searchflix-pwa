@@ -3,6 +3,8 @@
     <Heading title="Strona Główna" class="mb-5" big>
       <span>Poniższa lista przedstawia produkcje, który w najbliższym czasie znikną z oferty Netflixa.</span>
     </Heading>
+
+    <NoData v-if="true" icon="exclamation-circle" title="Brak danych" />
     <Slider v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="$moment(group.date, 'YYYY-MM-DD').fromNow()" @open="open" />
 
     <Details :id="id" :show="showDetails" @close="close" /> 

@@ -11,7 +11,7 @@
       <div class="md:hidden">
         <Button @click.native="openSearch" icon="adjustments" type="light" :count="18">Filtry</Button>
       </div>
-      <Button @click.native="search" icon="search">Szukaj</Button>
+      <Button @click.native="search" icon="search-circle">Szukaj</Button>
     </div>
 
     <p class="mx-8">      
@@ -74,6 +74,7 @@
       
     </p>
 
+    <NoData v-if="true" icon="search-circle" title="Brak wyników dla podanych kryteriów" />
     <Loader v-if="loading" />  
     <Slider v-else :movies="movies" title="Wyniki" @open="openDetails" />
 
