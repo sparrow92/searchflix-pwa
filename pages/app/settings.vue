@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Heading title="Ustawienia" big>
+    <Heading title="Ustawienia" class="mb-5" big>
       <span>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet minima reprehenderit dicta, consectetur ipsa perferendis asperiores velit voluptatibus ipsam eos saepe blanditiis commodi rerum iusto animi quis natus enim tenetur!
       </span>

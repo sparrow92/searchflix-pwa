@@ -6,7 +6,7 @@
       </div>
     </Heading>
 
-    <div class="flex flex-wrap md:flex-nowrap items-end gap-3 md:gap-10 w-full px-8 mb-5 md:my-5">
+    <div class="flex flex-wrap md:flex-nowrap items-end gap-3 md:gap-10 w-full p-8 mb-5 mt-5 md:mb-5 md:mt-0 bg-white bg-opacity-10">
       <input type="text" class="flex-grow block bg-transparent border-b border-white focus:border-red py-3 text-white text-2xl outline-none mb-5 md:mb-0">
       <div class="md:hidden">
         <Button @click.native="openSearch" icon="adjustments" type="light" :count="18">Filtry</Button>
