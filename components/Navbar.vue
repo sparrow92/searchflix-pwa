@@ -1,7 +1,11 @@
 <template>
   <div class="fixed flex md:justify-between items-center bottom-0 md:top-0 w-full h-16 md:px-8 bg-black dark:bg-gray-700 shadow-lg border-t border-gray-900 dark:border-gray-600 z-40">
     
-    <Logo class="hidden md:flex h-10 mr-auto" />
+    
+
+    <NuxtLink class="hidden md:flex mr-auto" to="/app">
+      <Logo class="h-10" />
+    </NuxtLink>    
 
     <div class="flex justify-around items-center h-full w-full md:w-auto md:gap-10">
       <div>
