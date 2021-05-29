@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Heading title="Do obejrzenia" big />
+    <Heading title="Do obejrzenia" big>
+      <span>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet minima reprehenderit dicta, consectetur ipsa perferendis asperiores velit voluptatibus ipsam eos saepe blanditiis commodi rerum iusto animi quis natus enim tenetur!
+      </span>
+    </Heading>
 
     <Loader v-if="loading" />
     <Slider v-else v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="group.type === 'movie' ? 'filmy' : 'seriale'" @open="open" />   

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Heading title="Strona Główna" big />
+    <Heading title="Strona Główna" big>
+      <span>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet minima reprehenderit dicta, consectetur ipsa perferendis asperiores velit voluptatibus ipsam eos saepe blanditiis commodi rerum iusto animi quis natus enim tenetur!
+      </span>
+    </Heading>
     <Slider v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="$moment(group.date, 'YYYY-MM-DD').fromNow()" @open="open" />
 
     <Details :id="id" :show="showDetails" @close="close" /> 

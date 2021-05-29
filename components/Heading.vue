@@ -1,12 +1,12 @@
 <template>
-  <div :class="big ? 'w-screen' : 'w-full'">
-    <div class="flex justify-between items-center py-2" :class="[{ 'px-8': big }]">
-      <h1 :class="{ 'text-xl font-bold mb-0': !big }">{{ title }}</h1>
-      <div>
+  <div :class="big ? 'w-screen md:bg-gradient-to-r from-red-900 via-red-500 to-red-900 shadow-inner mb-5' : 'w-full'">
+    <div class="flex justify-between items-center py-2" :class="[{ 'px-8 py-4 h-20': big }]">
+      <h1 :class="['mb-0', { 'text-xl font-bold': !big }]">{{ title }}</h1>
+      <div class="heading__additional">
         <slot />      
       </div>
     </div>
-    <div class="bg-gradient-to-r mb-5" :class="big ? 'from-red-800 via-red to-transparent h-0.5' : 'from-gray-500 via-gray-600 to-transparent h-px'"></div> 
+    <div v-if="!big" class="bg-gradient-to-r from-gray-500 via-gray-600 to-transparent h-px mb-5"></div> 
   </div>
 
 </template>
@@ -42,5 +42,9 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-
+.heading {
+  &__additional {
+    @apply hidden md:block max-w-3xl font-semibold text-sm text-right;
+  }
+}
 </style>
