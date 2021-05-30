@@ -6,12 +6,14 @@
       </div>
     </Heading>
 
-    <div class="flex flex-wrap md:flex-nowrap items-end gap-3 md:gap-10 w-full p-8 mb-5 mt-5 md:mb-5 md:mt-0 bg-white bg-opacity-10">
-      <input type="text" class="flex-grow block bg-transparent border-b border-white focus:border-red py-3 text-white text-2xl outline-none mb-5 md:mb-0">
+    <div class="flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-10 w-full p-8 mb-5 mt-5 md:mb-5 md:mt-0 bg-white bg-opacity-5">
+      <input 
+      type="text" placeholder="Wpisz tytuł filmu..."
+      class="placeholder-gray-500 placeholder-opacity-50 flex-grow w-full md:w-auto block bg-transparent border-b border-gray-700 focus:border-red leading-normal text-white text-xl md:text-3xl py-2 outline-none mb-5 md:mb-0">
       <div class="md:hidden">
         <Button @click.native="openSearch" icon="adjustments" type="light" :count="18">Filtry</Button>
       </div>
-      <Button @click.native="search" icon="search-circle">Szukaj</Button>
+      <Button @click.native="search" icon="search">Szukaj</Button>
     </div>
 
     <p class="mx-8">      
