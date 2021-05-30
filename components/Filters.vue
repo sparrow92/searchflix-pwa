@@ -2,15 +2,36 @@
   <Modal :show="show" @close="close" type="search">
       
       <template v-slot:header>
-        Szukania zaawansowane
+        <div class="flex items-center gap-3">
+          <span>Filtry wyszukiwania</span>
+          <span v-if="counter" class="rounded-full font-semibold flex items-center justify-center text-sm bg-gradient-to-b from-red to-red-900 w-7 h-7">10</span>
+        </div>
       </template>
 
-      <div class="mb-2">
-        <label for="name">Nazwa: </label>
-        <input v-model="queryData.query" type="text" id="name" name="name" />
+      <div class="filters flex flex-wrap w-full">
+        <div class="w-full">
+          <Heading title="Gatunki" />
+          <Toggle :checked="true" />
+        </div>
+
+        <div class="w-full">
+          <Heading title="Kraje" />
+        </div>
+
+        <div class="w-full">
+          <Heading title="Rok produkcji" />
+        </div>
+
+        <div class="w-full md:w-1/2">
+          <Heading title="Typ" />
+        </div>
+
+        <div class="w-full md:w-1/2">
+          <Heading title="Oceny" />
+        </div>
       </div>
 
-      <div class="mb-2">
+      <!-- <div class="mb-2">
         <label for="genre">Gatunek: </label>
         <input v-model="queryData.genre_list" type="text" id="genre" name="genre" />
       </div>
@@ -58,10 +79,14 @@
       <div class="mb-2">
         <label for="countrylist">Kraje: </label>
         <input v-model="queryData.countrylist" type="text" id="countrylist" name="countrylist" />
-      </div>
+      </div> -->
 
       <template v-slot:footer>
-        <Button @click.native="search">Szukaj</Button>
+        <div class="flex gap-3">
+        <Button @click.native="reset" icon="refresh" type="light">Resetuj</Button>
+        <Button @click.native="search" icon="adjustments">Zastosuj</Button>          
+        </div>
+
       </template>
   </Modal>
 </template>
@@ -108,13 +133,21 @@ export default {
   computed: {
     ...mapGetters([
       'getQuery'
-    ])
+    ]),
+
+    counter() {
+      return 15
+    }
   },
 
   methods: {
     ...mapActions([
       'saveQuery'
     ]),
+
+    reset: function() {
+
+    },
 
     search: function() {
       this.saveQuery(this.queryData)
@@ -132,5 +165,11 @@ export default {
 <style lang="postcss">
 input {
   @apply text-black;
+}
+
+.filters {
+  & > div {
+    @apply p-1.5;
+  }
 }
 </style>
