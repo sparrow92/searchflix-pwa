@@ -78,7 +78,7 @@
 
     <NoData v-if="true" icon="search-circle" title="Brak wyników dla podanych kryteriów" />
     <Loader v-if="loading" class="my-32" />  
-    <Slider v-else :movies="movies" title="Wyniki" @open="openDetails" />
+    <MovieSlider v-else :movies="movies" title="Wyniki" @open="openDetails" />
 
     <Details :id="id" :show="showDetails" @close="closeDetails" /> 
     <SearchQuery :show="showSearch" @close="closeSearch" @search="search" /> 

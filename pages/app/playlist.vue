@@ -6,7 +6,7 @@
 
     <NoData v-if="true" icon="film" title="Brak zapisanych filmów" />
     <Loader v-if="loading" class="my-32" />
-    <Slider v-else v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="group.type === 'movie' ? 'filmy' : 'seriale'" @open="open" />   
+    <MovieSlider v-else v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="group.type === 'movie' ? 'filmy' : 'seriale'" @open="open" />   
 
     <Details :id="id" :show="showDetails" @close="close" /> 
   </div>
