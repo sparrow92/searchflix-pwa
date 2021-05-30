@@ -27,8 +27,9 @@ export default {
     { src: '@/plugins/v-select', mode: 'client' },
     { src: '@/plugins/vue-country-flag', mode: 'client' },
     { src: '@/plugins/lodash', mode: 'client' },
-    { src: '@/plugins/v-body-scroll-lock.js', mode: 'client' },
-    { src: '@/plugins/moment.js', mode: 'client' },
+    { src: '@/plugins/v-body-scroll-lock', mode: 'client' },
+    { src: '@/plugins/moment', mode: 'client' },
+    { src: '@/plugins/vue-js-toggle-button', mode: 'client' }
   ],
 
   components: true,
