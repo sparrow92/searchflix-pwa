@@ -19,6 +19,7 @@
 
         <div class="w-full">
           <Heading title="Rok produkcji" />
+          <Slider v-model="years" :min="1900" :max="2021" />
         </div>
 
         <div class="w-full md:w-1/2">
@@ -31,6 +32,7 @@
 
         <div class="w-full md:w-1/2">
           <Heading title="Oceny" />
+          <Slider v-model="rating" :min="0" :max="10" />
         </div>
       </div>
 
@@ -95,9 +97,12 @@
 </template>
 
 <script>
+import Slider from '@vueform/slider/dist/slider.vue2.js'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  components: { Slider },
+
   props: {
     show: {
       type: Boolean,
@@ -115,6 +120,8 @@ export default {
 
   data() {
     return {
+      years: [1900, 2021],
+      rating: [0, 10],
       type: {
         series: true,
         movie: true
@@ -169,6 +176,7 @@ export default {
 }
 </script>
 
+<style src="@vueform/slider/themes/default.css"></style>
 <style lang="postcss">
 input {
   @apply text-black;

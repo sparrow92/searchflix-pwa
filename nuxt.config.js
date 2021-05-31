@@ -29,7 +29,8 @@ export default {
     { src: '@/plugins/lodash', mode: 'client' },
     { src: '@/plugins/v-body-scroll-lock', mode: 'client' },
     { src: '@/plugins/moment', mode: 'client' },
-    { src: '@/plugins/vue-js-toggle-button', mode: 'client' }
+    { src: '@/plugins/vue-js-toggle-button', mode: 'client' },
+    { src: '@/plugins/vue-form-slider', mode: 'client' }
   ],
 
   components: true,
@@ -40,6 +41,7 @@ export default {
     '@nuxt-hero-icons/solid/nuxt',
     '@nuxtjs/moment',
     '@nuxtjs/device',
+    '@nuxtjs/composition-api/module'
   ],
 
   modules: [

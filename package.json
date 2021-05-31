@@ -13,6 +13,7 @@
     "@nuxt-hero-icons/solid": "^1.0.1",
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/pwa": "^3.3.5",
+    "@vueform/slider": "^1.0.5",
     "autoprefixer": "^9.8.6",
     "core-js": "^3.8.3",
     "lodash": "^4.17.21",
@@ -29,9 +30,11 @@
     "vue-select": "^3.11.2"
   },
   "devDependencies": {
+    "@nuxtjs/composition-api": "^0.24.2",
     "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/tailwindcss": "^3.4.2",
-    "@tailwindcss/postcss7-compat": "^2.0.3"
+    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "uninstall": "0.0.0"
   }
 }
