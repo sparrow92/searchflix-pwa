@@ -18,7 +18,7 @@
         </div>
 
         <div class="w-full">
-          <Heading title="Rok produkcji" />
+          <Heading title="Rok produkcji" class="mb-14" />
           <Slider v-model="years" :min="1900" :max="2021" />
         </div>
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="w-full md:w-1/2">
-          <Heading title="Oceny" />
+          <Heading title="Oceny" class="mb-14" />
           <Slider v-model="rating" :min="0" :max="10" />
         </div>
       </div>
@@ -176,10 +176,18 @@ export default {
 }
 </script>
 
-<style src="@vueform/slider/themes/default.css"></style>
+<style src="@vueform\slider\themes\default.css"></style>
 <style lang="postcss">
 input {
   @apply text-black;
+}
+
+.slider-connect {
+  @apply bg-red;
+}
+
+.slider-tooltip {
+  @apply bg-red border border-red;
 }
 
 .filters {
