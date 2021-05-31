@@ -1,5 +1,5 @@
 <template>
-  <div class="cursor-pointer">
+  <div class="flex gap-3 items-center cursor-pointer">
     <toggle-button 
       v-model="switched"
       :css-colors="true"
@@ -7,6 +7,9 @@
       :margin="2"
       :sync="true"
     />  
+    <span v-if="name" class="text-lg">
+      {{ name }}
+    </span>
   </div>
 </template>
 
@@ -20,7 +23,12 @@ export default {
   props: {
     checked: {
       type: Boolean,
-      default: false
+      default: () => false
+    },
+
+    name: {
+      type: String,
+      default: () => ''
     }
   },
 

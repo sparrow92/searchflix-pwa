@@ -11,7 +11,6 @@
       <div class="filters flex flex-wrap w-full">
         <div class="w-full">
           <Heading title="Gatunki" />
-          <Toggle :checked="true" />
         </div>
 
         <div class="w-full">
@@ -24,6 +23,10 @@
 
         <div class="w-full md:w-1/2">
           <Heading title="Typ" />
+          <div class="flex gap-5">
+            <Toggle name="Seriale" :checked="type.series" @click.native="type.series = !type.series" />
+            <Toggle name="Filmy" :checked="type.movie" @click.native="type.movie = !type.movie" />            
+          </div>
         </div>
 
         <div class="w-full md:w-1/2">
@@ -112,6 +115,10 @@ export default {
 
   data() {
     return {
+      type: {
+        series: true,
+        movie: true
+      },
       queryData: {
         query: '',
         limit: 5, // max 100
