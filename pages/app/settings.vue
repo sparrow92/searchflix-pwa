@@ -3,6 +3,7 @@
     <Heading title="Ustawienia" class="mb-5" big>
       <span>Poniższe ustawienia będą mogły zostać wzięte pod uwagę przy wyszukiwaniu filmów.</span>
     </Heading>
+    <Heading title="Wybierz swój kraj" class="px-8" />
     <SelectCountry />
     <div class="p-8">
       <Heading title="Czarna lista">

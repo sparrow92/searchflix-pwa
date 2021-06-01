@@ -1,6 +1,5 @@
 <template>
   <div class="px-8 w-full">
-    <Heading title="Wybierz swój kraj" :border="border" />
     <div class="flex items-center w-full h-16">
       <Loader v-if="!selected" />
       <v-select
@@ -28,13 +27,6 @@ import { mapGetters, mapActions } from 'vuex'
 import mock from '@/api/mock/index'
 
 export default {
-  props: {
-    border: {
-      type: Boolean,
-      default: () => true
-    }
-  },
-
   data() {
     return {
       selected: null,
