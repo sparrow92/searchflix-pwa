@@ -10,7 +10,9 @@
 
       <div class="filters flex flex-wrap w-full">
         <div class="w-full">
-          <Heading title="Gatunki" />
+          <Heading title="Gatunki">
+            <GenreFilter />
+          </Heading>
           
           <div class="flex flex-wrap">
             <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index">{{ item }}</Badge>
@@ -18,7 +20,10 @@
         </div>
 
         <div class="w-full">
-          <Heading title="Kraje" />
+          <Heading title="Kraje">
+            <CountryFilter />
+          </Heading>
+          
           <div class="flex flex-wrap">
             <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index">{{ item }}</Badge>
           </div>
