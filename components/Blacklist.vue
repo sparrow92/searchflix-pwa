@@ -28,6 +28,7 @@
     </div>      
 
     <template v-slot:footer>
+      <Button @click.native="reset" type="light" class="mr-3">Wyczyść</Button>
       <Button @click.native="close">Zamknij</Button>
     </template>
 
@@ -76,11 +77,16 @@ export default {
   methods: {
     ...mapActions([
       'addGenre',
-      'removeGenre'
+      'removeGenre',
+      'resetBlacklist'
     ]),
 
     selectGenres() {
       this.addGenre(this.selected)
+    },
+
+    reset: function() {
+      this.resetBlacklist();
     },
 
     close: function() {

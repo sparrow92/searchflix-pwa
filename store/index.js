@@ -86,6 +86,10 @@ export const mutations = {
     }
   },
 
+  RESET_BLACKLIST(state) {
+    state.blacklist = [];
+  },
+
   STORE_QUERY(state, payload) {
     state.query = payload
   },
@@ -115,6 +119,10 @@ export const actions = {
   removeGenre({ commit, state }, id) {
     commit('REMOVE_GENRE', id);
     localStorage.setItem('blacklist', JSON.stringify(state.blacklist));
+  },
+
+  resetBlacklist({ commit }) {
+    commit('RESET_BLACKLIST');
   },
 
   saveQuery({ commit }, query) {

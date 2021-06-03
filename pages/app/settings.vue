@@ -5,9 +5,9 @@
     </Heading>
     <Heading title="Wybierz swój kraj" class="px-8" />
     <SelectCountry />
-    <div class="p-8">
+    <div class="p-8 w-full">
       <Heading title="Czarna lista">
-        <Button @click.native="open" icon="plus" small>Dodaj gatunek</Button>
+        <Button @click.native="open" icon="adjustments" type="light" class="mr-2" small>Modyfikuj</Button>     
       </Heading>
             
       <div class="flex flex-wrap">
