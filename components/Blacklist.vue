@@ -4,28 +4,15 @@
       Czarna lista
     </template>
 
-    <div class="flex justify-between items-start gap-2 mb-5">
-      <v-select 
-        class="select-genres cursor-pointer w-full"
-        v-model="selected"
-        :options="filteredGenres"
-        label="genre"
-      >
-        <template v-slot:option="option">
-          {{ option.genre }}
-        </template>
-      </v-select>
-    </div>
-    <div v-if="getBlacklist.length">
-      <div class="block py-5 border-gray-800 flex justify-between items-center" :class="(index == 0) ? 'border-t-0' : 'border-t'" v-for="(item, index) in getBlacklist" :key="item.netflixid">
-        <span class="">{{ item.genre }}</span>
-        <outline-trash-icon class="w-7 h-7 cursor-pointer text-red" @click.native="removeGenre(item.netflixid)" />
-      </div>
-    </div>
-    <div v-else class="flex flex-col items-center justify-center text-gray-800 my-32">
-      <outline-trash-icon class="w-10 h-10" />
-      <span class="font-bold text-2xl">Brak elementów</span>
-    </div>      
+    <input type="text" placeholder="Wpisz gatunek..." class="form__input small" v-model="selected">
+    <div class="flex flex-wrap mt-4">
+      <Badge v-for="(item, index) in filteredGenres" :key="index" type="add" @click.native="add(item)">{{ item.genre }}</Badge>
+      <span v-show="genres.length > genreLimit && filteredGenres.length" @click="genreLimit = genres.length" class="show-more">Wczytaj pozostałe...</span>
+      <span v-show="!filteredGenres.length" class="no-data">Brak szukanych gatunków...</span>
+    </div>   
+    <div class="flex flex-wrap mt-2">
+      <Badge v-for="(item, index) in getBlacklist" :key="index" @action="remove(item.netflixid)">{{ item.genre }}</Badge>
+    </div>   
 
     <template v-slot:footer>
       <Button @click.native="reset" type="light" class="mr-3">Wyczyść</Button>
@@ -47,18 +34,11 @@ export default {
     }
   },
 
-  watch: {
-    selected(val) {
-      if (val) {
-        this.selectGenres();
-      }
-    }
-  },
-
   data() {
     return {
-      selected: null,
-      genres: []
+      selected: '',
+      genres: [],
+      genreLimit: 10
     }
   },
 
@@ -67,11 +47,17 @@ export default {
       'getBlacklist'
     ]),
 
-    filteredGenres() {
+    reducedGenres() {
       return this._.differenceWith(this.genres, this.getBlacklist, function(o1, o2) {
         return o1['netflixid'] === o2['netflixid']
       })
-    }
+    },
+
+    filteredGenres() {
+      return this.reducedGenres.filter((item) => {
+        return item.genre.toLowerCase().includes(this.selected.toLowerCase());
+      }).slice(0, this.genreLimit)
+    },
   },
 
   methods: {
@@ -81,8 +67,12 @@ export default {
       'resetBlacklist'
     ]),
 
-    selectGenres() {
-      this.addGenre(this.selected)
+    add(item) {
+      this.addGenre(item)
+    },
+
+    remove(id) {
+      this.removeGenre(id)
     },
 
     reset: function() {
@@ -96,29 +86,16 @@ export default {
 
   async mounted() {
     this.genres = await mock.fetchGenres();
-    this.selected = this.filtered;
   }
 }
 </script>
 
 <style lang="postcss">
-  .select-genres .vs__search::placeholder,
-  .select-genres .vs__dropdown-toggle,
-  .select-genres .vs__dropdown-menu {
-    background: #dfe5fb;
-    border: none;
-    color: #394066;
-    text-transform: lowercase;
-    font-variant: small-caps;
-  }
+.show-more {
+  @apply my-auto p-2 text-gray-500 cursor-pointer font-semibold text-sm whitespace-nowrap;
+}
 
-  .select-genres .vs__clear,
-  .select-genres .vs__open-indicator {
-    fill: #394066;
-  }
-
-  .select-genres .vs__selected {
-    margin: 0 2px;
-  }
-
+.no-data {
+  @apply my-auto py-2 text-gray-500 cursor-pointer font-semibold text-lg whitespace-nowrap;;
+}
 </style>
