@@ -11,7 +11,7 @@
 
       <div class="section col-span-2">
         <input type="text" placeholder="Wpisz gatunek..." class="form__input small" v-model="genre">
-        <div class="flex flex-wrap mt-4">
+        <div class="flex flex-wrap mt-4 max-h-20 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
           <Badge v-for="(item, index) in filteredGenres" :key="index" type="add" @click.native="addGenre(item)">{{ item.genre }}</Badge>
           <span v-show="genres.length > genreLimit && filteredGenres.length" @click="genreLimit = genres.length" class="show-more">Wczytaj pozostałe...</span>
           <span v-show="!filteredGenres.length" class="no-data">Brak szukanych gatunków...</span>
@@ -23,7 +23,7 @@
 
       <div class="section col-span-2">
         <input type="text" placeholder="Wpisz kraj produkcji..." class="form__input small" v-model="country">
-        <div class="flex flex-wrap mt-4">
+        <div class="flex flex-wrap mt-4 max-h-20 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
           <Badge v-for="(item, index) in filteredCountries" :key="index" type="add" @click.native="addCountry(item)">{{ item.country }}</Badge>
           <span v-show="countries.length > countryLimit && filteredCountries.length" @click="countryLimit = countries.length" class="show-more">Wczytaj pozostałe...</span>
           <span v-show="!filteredCountries.length" class="no-data">Brak szukanych krajów...</span>
@@ -57,8 +57,8 @@
 
     <template v-slot:footer>
       <div class="flex gap-3">
-        <Button @click.native="reset" icon="refresh" type="light">Resetuj</Button>
-        <Button @click.native="search" icon="adjustments">Zastosuj</Button>          
+        <Button @click.native="reset">Resetuj</Button>
+        <Button @click.native="search" type="light">Zastosuj</Button>          
       </div>
     </template>
   </Modal>
