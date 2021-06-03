@@ -12,24 +12,24 @@
       <div class="section col-span-2">
         <input type="text" placeholder="Wpisz gatunek..." class="form__input small" v-model="genre">
         <div class="flex flex-wrap mt-4">
-          <Badge v-for="(item, index) in filteredGenres" :key="index" type="add">{{ item.genre }}</Badge>
+          <Badge v-for="(item, index) in filteredGenres" :key="index" type="add" @click.native="addGenre(item)">{{ item.genre }}</Badge>
           <span v-show="genres.length > genreLimit && filteredGenres.length" @click="genreLimit = genres.length" class="show-more">Wczytaj pozostałe...</span>
           <span v-show="!filteredGenres.length" class="no-data">Brak szukanych gatunków...</span>
         </div>   
         <div class="flex flex-wrap mt-2">
-          <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index">{{ item }}</Badge>
+          <Badge v-for="(item, index) in selectedGenres" :key="index" @action="removeGenre(item.netflixid)">{{ item.genre }}</Badge>
         </div>   
       </div>
 
       <div class="section col-span-2">
         <input type="text" placeholder="Wpisz kraj produkcji..." class="form__input small" v-model="country">
         <div class="flex flex-wrap mt-4">
-          <Badge v-for="(item, index) in filteredCountries" :key="index" type="add">{{ item.country }}</Badge>
+          <Badge v-for="(item, index) in filteredCountries" :key="index" type="add" @click.native="addCountry(item)">{{ item.country }}</Badge>
           <span v-show="countries.length > countryLimit && filteredCountries.length" @click="countryLimit = countries.length" class="show-more">Wczytaj pozostałe...</span>
           <span v-show="!filteredCountries.length" class="no-data">Brak szukanych krajów...</span>
         </div>  
         <div class="flex flex-wrap mt-2">
-          <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index">{{ item }}</Badge>
+          <Badge v-for="(item, index) in selectedCountries" :key="index" @action="removeCountry(item.id)">{{ item.country }}</Badge>
         </div>  
       </div>
 
@@ -95,6 +95,8 @@ export default {
       rating: [0, 10],
       genres: [],
       countries: [],
+      selectedGenres: [],
+      selectedCountries: [],
       genreLimit: 10,
       countryLimit: 10,
       type: {
@@ -124,14 +126,26 @@ export default {
       'getQuery'
     ]),
 
+    reducedCountries() {
+      return this._.differenceWith(this.countries, this.selectedCountries, function(o1, o2) {
+        return o1['id'] === o2['id']
+      })
+    },
+
+    reducedGenres() {
+      return this._.differenceWith(this.genres, this.selectedGenres, function(o1, o2) {
+        return o1['netflixid'] === o2['netflixid']
+      })
+    },
+
     filteredCountries() {
-      return this.countries.filter((item) => {
+      return this.reducedCountries.filter((item) => {
         return item.country.toLowerCase().includes(this.country.toLowerCase());
       }).slice(0, this.countryLimit)
     },
 
     filteredGenres() {
-      return this.genres.filter((item) => {
+      return this.reducedGenres.filter((item) => {
         return item.genre.toLowerCase().includes(this.genre.toLowerCase());
       }).slice(0, this.genreLimit)
     },
@@ -145,6 +159,46 @@ export default {
     ...mapActions([
       'saveQuery'
     ]),
+
+    addCountry(country) {
+      let array = this.selectedCountries.filter(item => {
+        return item.id === country.id
+      });
+
+      if (!array.length) {
+        this.selectedCountries.push(country)
+      }
+    },
+
+    addGenre(genre) {
+      let array = this.selectedGenres.filter(item => {
+        return item.netflixid === genre.netflixid
+      });
+
+      if (!array.length) {
+        this.selectedGenres.push(genre)
+      }
+    },
+
+    removeCountry(id) {
+      let array = this.selectedCountries.filter(item => {
+        return item.id === id
+      });
+
+      if (array.length) {
+        this.selectedCountries.splice(this.selectedCountries.map(item => item.id).indexOf(id), 1)
+      }
+    },
+
+    removeGenre(id) {
+      let array = this.selectedGenres.filter(item => {
+        return item.netflixid === id
+      });
+
+      if (array.length) {
+        this.selectedGenres.splice(this.selectedGenres.map(item => item.netflixid).indexOf(id), 1)
+      }
+    },
 
     reset: function() {
 
