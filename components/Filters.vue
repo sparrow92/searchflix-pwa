@@ -8,18 +8,23 @@
     </template>
 
     <div class="grid grid-cols-2 gap-4 w-full">
+
       <div class="section col-span-2">
-        <span class="title">Gatunki</span>
-        <GenreFilter />
-        <div class="flex flex-wrap">
+        <input type="text" placeholder="Wpisz gatunek..." class="form__input small">
+        <div class="flex flex-wrap mt-4">
+          <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index" type="add">{{ item }}</Badge>
+        </div>   
+        <div class="flex flex-wrap mt-2">
           <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index">{{ item }}</Badge>
         </div>   
       </div>
 
       <div class="section col-span-2">
-        <span class="title">Kraje</span>
-        <CountryFilter />
-        <div class="flex flex-wrap">
+        <input type="text" placeholder="Wpisz kraj produkcji..." class="form__input small">
+        <div class="flex flex-wrap mt-4">
+          <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index" type="add">{{ item }}</Badge>
+        </div>  
+        <div class="flex flex-wrap mt-2">
           <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index">{{ item }}</Badge>
         </div>  
       </div>
@@ -43,57 +48,8 @@
         <div class="block h-10"></div>
         <Slider v-model="rating" :min="0" :max="10" class="px-2.5" />          
       </div>
-    </div>
 
-    <!-- <div class="mb-2">
-      <label for="genre">Gatunek: </label>
-      <input v-model="queryData.genre_list" type="text" id="genre" name="genre" />
     </div>
-
-    <div class="mb-2">
-      <label for="type">Typ: </label>
-      <input v-model="queryData.type" type="text" id="type" name="type" />
-    </div>
-
-    <div class="mb-2">
-      <label for="start_year">Od roku: </label>
-      <input v-model="queryData.start_year" type="text" id="start_year" name="start_year" />
-    </div>
-
-    <div class="mb-2">
-      <label for="end_year">Do roku: </label>
-      <input v-model="queryData.end_year" type="text" id="end_year" name="end_year" />
-    </div>
-
-    <div class="mb-2">
-      <label for="audiosubtitle">Napisy, audio: </label>
-      <input v-model="queryData.audiosubtitle_andor" type="text" id="audiosubtitle" name="audiosubtitle" />
-    </div>
-
-    <div class="mb-2">
-      <label for="start_rating">Oceny od: </label>
-      <input v-model="queryData.start_rating" type="text" id="start_rating" name="start_rating" />
-    </div>
-
-    <div class="mb-2">
-      <label for="end_rating">Oceny do: </label>
-      <input v-model="queryData.end_rating" type="text" id="end_rating" name="end_rating" />
-    </div>
-
-    <div class="mb-2">
-      <label for="subtitle">Napisy: </label>
-      <input v-model="queryData.subtitle" type="text" id="subtitle" name="subtitle" />
-    </div>
-
-    <div class="mb-2">
-      <label for="audio">Lektor: </label>
-      <input v-model="queryData.audio" type="text" id="audio" name="audio" />
-    </div>
-
-    <div class="mb-2">
-      <label for="countrylist">Kraje: </label>
-      <input v-model="queryData.countrylist" type="text" id="countrylist" name="countrylist" />
-    </div> -->
 
     <template v-slot:footer>
       <div class="flex gap-3">

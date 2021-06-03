@@ -7,9 +7,7 @@
     </Heading>
 
     <div class="flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-10 w-full p-8 mb-5 mt-5 md:mb-5 md:mt-0 bg-white bg-opacity-5">
-      <input 
-      type="text" placeholder="Wpisz tytuł filmu..."
-      class="placeholder-gray-500 placeholder-opacity-50 flex-grow w-full md:w-auto block bg-transparent border-b border-gray-700 focus:border-red leading-normal text-white text-xl md:text-3xl py-2 outline-none mb-5 md:mb-0">
+      <input type="text" placeholder="Wpisz tytuł filmu..." class="form__input">
       <div class="md:hidden">
         <Button @click.native="openSearch" icon="adjustments" type="light" :count="18">Filtry</Button>
       </div>

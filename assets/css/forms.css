@@ -1,0 +1,8 @@
+.form__input {
+  @apply flex-grow w-full block border-b leading-normal text-xl md:text-3xl py-2 outline-none mb-5 md:mb-0;
+  @apply border-gray-700 focus:border-red text-white placeholder-gray-500 placeholder-opacity-50 bg-transparent;
+}
+
+.form__input.small {
+  @apply text-lg md:text-2xl py-2;
+}
