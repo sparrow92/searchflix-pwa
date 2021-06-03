@@ -7,51 +7,41 @@
       </div>
     </template>
 
-    <div class="filters flex flex-wrap w-full">
-      <div class="section__wrapper w-full">
-        <div class="section__content">
-          <span class="title">Gatunki</span>
-          <GenreFilter />
-          <div class="flex flex-wrap">
-            <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index">{{ item }}</Badge>
-          </div>          
-        </div>
+    <div class="grid grid-cols-2 gap-4 w-full">
+      <div class="section col-span-2">
+        <span class="title">Gatunki</span>
+        <GenreFilter />
+        <div class="flex flex-wrap">
+          <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index">{{ item }}</Badge>
+        </div>   
       </div>
 
-      <div class="section__wrapper w-full">
-        <div class="section__content">
-          <span class="title">Kraje</span>
-          <CountryFilter />
-          <div class="flex flex-wrap">
-            <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index">{{ item }}</Badge>
-          </div>          
-        </div>
+      <div class="section col-span-2">
+        <span class="title">Kraje</span>
+        <CountryFilter />
+        <div class="flex flex-wrap">
+          <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index">{{ item }}</Badge>
+        </div>  
       </div>
 
-      <div class="section__wrapper w-full">
-        <div class="section__content">
-          <span class="title">Kraj produkcji</span>
-          <div class="block h-10"></div>
-          <Slider v-model="years" :min="1900" :max="2021" class="px-5" />          
-        </div>
+      <div class="section col-span-2">
+        <span class="title">Kraj produkcji</span>
+        <div class="block h-10"></div>
+        <Slider v-model="years" :min="1900" :max="2021" class="px-5" />          
       </div>
 
-      <div class="section__wrapper w-full md:w-1/2">
-        <div class="section__content">
-          <span class="title">Typ</span>
-          <div class="flex gap-5">
-            <Toggle name="Seriale" :checked="type.series" @click.native="type.series = !type.series" />
-            <Toggle name="Filmy" :checked="type.movie" @click.native="type.movie = !type.movie" />            
-          </div>          
-        </div>
+      <div class="section col-span-2 md:col-span-1">
+        <span class="title">Typ</span>
+        <div class="flex gap-5">
+          <Toggle name="Seriale" :checked="type.series" @click.native="type.series = !type.series" />
+          <Toggle name="Filmy" :checked="type.movie" @click.native="type.movie = !type.movie" />            
+        </div>   
       </div>
 
-      <div class="section__wrapper w-full md:w-1/2">
-        <div class="section__content">
-          <span class="title">Oceny</span>
-          <div class="block h-10"></div>
-          <Slider v-model="rating" :min="0" :max="10" class="px-2.5" />          
-        </div>
+      <div class="section col-span-2 md:col-span-1">
+        <span class="title">Oceny</span>
+        <div class="block h-10"></div>
+        <Slider v-model="rating" :min="0" :max="10" class="px-2.5" />          
       </div>
     </div>
 
@@ -208,24 +198,11 @@ input {
   @apply bg-red border border-red;
 }
 
-.filters {
-  & > div {
-    @apply p-1.5;
-  }
-}
-
 .section {
-  &__wrapper {
-    @apply p-3;
-  }
+  @apply border-gray-800 border rounded-lg p-4;
 
-  &__content {
-    @apply border-gray-800 border rounded-lg p-4;
-
-    .title {
-      @apply block mb-4 text-gray-600 font-medium uppercase text-lg;
-    }
+  .title {
+    @apply block mb-4 text-gray-600 font-medium uppercase text-lg;
   }
-  
 }
 </style>
