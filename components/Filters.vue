@@ -1,106 +1,116 @@
 <template>
   <Modal :show="show" @close="close" type="search">
-      
-      <template v-slot:header>
-        <div class="flex items-center gap-3">
-          <span>Filtry wyszukiwania</span>
-          <span v-if="counter" class="rounded-full font-semibold flex items-center justify-center text-sm bg-gradient-to-b from-red to-red-900 w-7 h-7">10</span>
-        </div>
-      </template>
+    <template v-slot:header>
+      <div class="flex items-center gap-3">
+        <span>Filtry wyszukiwania</span>
+        <span v-if="counter" class="rounded-full font-semibold flex items-center justify-center text-sm bg-gradient-to-b from-red to-red-900 w-6 h-6">10</span>
+      </div>
+    </template>
 
-      <div class="filters flex flex-wrap w-full">
-        <div class="w-full">
-          <Heading title="Gatunki"></Heading>
+    <div class="filters flex flex-wrap w-full">
+      <div class="section__wrapper w-full">
+        <div class="section__content">
+          <span class="title">Gatunki</span>
           <GenreFilter />
           <div class="flex flex-wrap">
             <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index">{{ item }}</Badge>
-          </div>
+          </div>          
         </div>
+      </div>
 
-        <div class="w-full">
-          <Heading title="Kraje"></Heading>
+      <div class="section__wrapper w-full">
+        <div class="section__content">
+          <span class="title">Kraje</span>
           <CountryFilter />
           <div class="flex flex-wrap">
             <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index">{{ item }}</Badge>
-          </div>
+          </div>          
         </div>
+      </div>
 
-        <div class="w-full">
-          <Heading title="Rok produkcji" class="mb-14" />
-          <Slider v-model="years" :min="1900" :max="2021" />
+      <div class="section__wrapper w-full">
+        <div class="section__content">
+          <span class="title">Kraj produkcji</span>
+          <div class="block h-10"></div>
+          <Slider v-model="years" :min="1900" :max="2021" class="px-5" />          
         </div>
+      </div>
 
-        <div class="w-full md:w-1/2">
-          <Heading title="Typ" />
+      <div class="section__wrapper w-full md:w-1/2">
+        <div class="section__content">
+          <span class="title">Typ</span>
           <div class="flex gap-5">
             <Toggle name="Seriale" :checked="type.series" @click.native="type.series = !type.series" />
             <Toggle name="Filmy" :checked="type.movie" @click.native="type.movie = !type.movie" />            
-          </div>
-        </div>
-
-        <div class="w-full md:w-1/2">
-          <Heading title="Oceny" class="mb-14" />
-          <Slider v-model="rating" :min="0" :max="10" />
+          </div>          
         </div>
       </div>
 
-      <!-- <div class="mb-2">
-        <label for="genre">Gatunek: </label>
-        <input v-model="queryData.genre_list" type="text" id="genre" name="genre" />
+      <div class="section__wrapper w-full md:w-1/2">
+        <div class="section__content">
+          <span class="title">Oceny</span>
+          <div class="block h-10"></div>
+          <Slider v-model="rating" :min="0" :max="10" class="px-2.5" />          
+        </div>
       </div>
+    </div>
 
-      <div class="mb-2">
-        <label for="type">Typ: </label>
-        <input v-model="queryData.type" type="text" id="type" name="type" />
-      </div>
+    <!-- <div class="mb-2">
+      <label for="genre">Gatunek: </label>
+      <input v-model="queryData.genre_list" type="text" id="genre" name="genre" />
+    </div>
 
-      <div class="mb-2">
-        <label for="start_year">Od roku: </label>
-        <input v-model="queryData.start_year" type="text" id="start_year" name="start_year" />
-      </div>
+    <div class="mb-2">
+      <label for="type">Typ: </label>
+      <input v-model="queryData.type" type="text" id="type" name="type" />
+    </div>
 
-      <div class="mb-2">
-        <label for="end_year">Do roku: </label>
-        <input v-model="queryData.end_year" type="text" id="end_year" name="end_year" />
-      </div>
+    <div class="mb-2">
+      <label for="start_year">Od roku: </label>
+      <input v-model="queryData.start_year" type="text" id="start_year" name="start_year" />
+    </div>
 
-      <div class="mb-2">
-        <label for="audiosubtitle">Napisy, audio: </label>
-        <input v-model="queryData.audiosubtitle_andor" type="text" id="audiosubtitle" name="audiosubtitle" />
-      </div>
+    <div class="mb-2">
+      <label for="end_year">Do roku: </label>
+      <input v-model="queryData.end_year" type="text" id="end_year" name="end_year" />
+    </div>
 
-      <div class="mb-2">
-        <label for="start_rating">Oceny od: </label>
-        <input v-model="queryData.start_rating" type="text" id="start_rating" name="start_rating" />
-      </div>
+    <div class="mb-2">
+      <label for="audiosubtitle">Napisy, audio: </label>
+      <input v-model="queryData.audiosubtitle_andor" type="text" id="audiosubtitle" name="audiosubtitle" />
+    </div>
 
-      <div class="mb-2">
-        <label for="end_rating">Oceny do: </label>
-        <input v-model="queryData.end_rating" type="text" id="end_rating" name="end_rating" />
-      </div>
+    <div class="mb-2">
+      <label for="start_rating">Oceny od: </label>
+      <input v-model="queryData.start_rating" type="text" id="start_rating" name="start_rating" />
+    </div>
 
-      <div class="mb-2">
-        <label for="subtitle">Napisy: </label>
-        <input v-model="queryData.subtitle" type="text" id="subtitle" name="subtitle" />
-      </div>
+    <div class="mb-2">
+      <label for="end_rating">Oceny do: </label>
+      <input v-model="queryData.end_rating" type="text" id="end_rating" name="end_rating" />
+    </div>
 
-      <div class="mb-2">
-        <label for="audio">Lektor: </label>
-        <input v-model="queryData.audio" type="text" id="audio" name="audio" />
-      </div>
+    <div class="mb-2">
+      <label for="subtitle">Napisy: </label>
+      <input v-model="queryData.subtitle" type="text" id="subtitle" name="subtitle" />
+    </div>
 
-      <div class="mb-2">
-        <label for="countrylist">Kraje: </label>
-        <input v-model="queryData.countrylist" type="text" id="countrylist" name="countrylist" />
-      </div> -->
+    <div class="mb-2">
+      <label for="audio">Lektor: </label>
+      <input v-model="queryData.audio" type="text" id="audio" name="audio" />
+    </div>
 
-      <template v-slot:footer>
-        <div class="flex gap-3">
+    <div class="mb-2">
+      <label for="countrylist">Kraje: </label>
+      <input v-model="queryData.countrylist" type="text" id="countrylist" name="countrylist" />
+    </div> -->
+
+    <template v-slot:footer>
+      <div class="flex gap-3">
         <Button @click.native="reset" icon="refresh" type="light">Resetuj</Button>
         <Button @click.native="search" icon="adjustments">Zastosuj</Button>          
-        </div>
-
-      </template>
+      </div>
+    </template>
   </Modal>
 </template>
 
@@ -202,5 +212,20 @@ input {
   & > div {
     @apply p-1.5;
   }
+}
+
+.section {
+  &__wrapper {
+    @apply p-3;
+  }
+
+  &__content {
+    @apply border-gray-800 border rounded-lg p-4;
+
+    .title {
+      @apply block mb-4 text-gray-600 font-medium uppercase text-lg;
+    }
+  }
+  
 }
 </style>
