@@ -10,9 +10,11 @@
     <div class="grid grid-cols-2 gap-4 w-full">
 
       <div class="section col-span-2">
-        <input type="text" placeholder="Wpisz gatunek..." class="form__input small">
+        <input type="text" placeholder="Wpisz gatunek..." class="form__input small" v-model="genre">
         <div class="flex flex-wrap mt-4">
-          <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index" type="add">{{ item }}</Badge>
+          <Badge v-for="(item, index) in filteredGenres" :key="index" type="add">{{ item.genre }}</Badge>
+          <span v-show="genres.length > genreLimit && filteredGenres.length" @click="genreLimit = genres.length" class="show-more">Wczytaj pozostałe...</span>
+          <span v-show="!filteredGenres.length" class="no-data">Brak szukanych gatunków...</span>
         </div>   
         <div class="flex flex-wrap mt-2">
           <Badge v-for="(item, index) in ['Horror', 'Porno', 'Thriller']" :key="index">{{ item }}</Badge>
@@ -20,9 +22,11 @@
       </div>
 
       <div class="section col-span-2">
-        <input type="text" placeholder="Wpisz kraj produkcji..." class="form__input small">
+        <input type="text" placeholder="Wpisz kraj produkcji..." class="form__input small" v-model="country">
         <div class="flex flex-wrap mt-4">
-          <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index" type="add">{{ item }}</Badge>
+          <Badge v-for="(item, index) in filteredCountries" :key="index" type="add">{{ item.country }}</Badge>
+          <span v-show="countries.length > countryLimit && filteredCountries.length" @click="countryLimit = countries.length" class="show-more">Wczytaj pozostałe...</span>
+          <span v-show="!filteredCountries.length" class="no-data">Brak szukanych krajów...</span>
         </div>  
         <div class="flex flex-wrap mt-2">
           <Badge v-for="(item, index) in ['Polska', 'Colombia', 'Puerto Rico']" :key="index">{{ item }}</Badge>
@@ -62,6 +66,7 @@
 
 <script>
 import Slider from '@vueform/slider/dist/slider.vue2.js'
+import mock from '@/api/mock/index'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -84,8 +89,14 @@ export default {
 
   data() {
     return {
+      genre: '',
+      country: '',
       years: [1900, 2021],
       rating: [0, 10],
+      genres: [],
+      countries: [],
+      genreLimit: 10,
+      countryLimit: 10,
       type: {
         series: true,
         movie: true
@@ -113,6 +124,18 @@ export default {
       'getQuery'
     ]),
 
+    filteredCountries() {
+      return this.countries.filter((item) => {
+        return item.country.toLowerCase().includes(this.country.toLowerCase());
+      }).slice(0, this.countryLimit)
+    },
+
+    filteredGenres() {
+      return this.genres.filter((item) => {
+        return item.genre.toLowerCase().includes(this.genre.toLowerCase());
+      }).slice(0, this.genreLimit)
+    },
+
     counter() {
       return 15
     }
@@ -136,6 +159,11 @@ export default {
     close: function() {
       this.$emit('close');
     },
+  },  
+  
+  async mounted() {
+    this.genres = await mock.fetchGenres();
+    this.countries = await mock.fetchCountries();
   }
 }
 </script>
@@ -144,6 +172,14 @@ export default {
 <style lang="postcss">
 input {
   @apply text-black;
+}
+
+.show-more {
+  @apply my-auto p-2 text-gray-500 cursor-pointer font-semibold text-sm whitespace-nowrap;
+}
+
+.no-data {
+  @apply my-auto py-2 text-gray-500 cursor-pointer font-semibold text-lg whitespace-nowrap;;
 }
 
 .slider-connect {
