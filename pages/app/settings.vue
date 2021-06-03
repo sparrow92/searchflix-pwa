@@ -11,7 +11,7 @@
       </Heading>
             
       <div class="flex flex-wrap">
-        <Badge v-for="item in getBlacklist" :key="item.netflixid" @remove="removeGenre(item.netflixid)">{{ item.genre }}</Badge>
+        <Badge v-for="item in getBlacklist" :key="item.netflixid" @action="removeGenre(item.netflixid)">{{ item.genre }}</Badge>
       </div>
 
     </div>
