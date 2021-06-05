@@ -2,84 +2,24 @@
   <div class="w-full">
     <Heading title="Wyszukiwarka" big>
       <div class="hidden md:flex">
-        <Button @click.native="openSearch" icon="adjustments" type="light" :count="18" small>Filtry</Button>        
+        <Button @click.native="openSearch" icon="adjustments" type="light" :count="count" small>Filtry</Button>        
       </div>
     </Heading>
 
     <div class="flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-10 w-full p-8 mb-5 mt-5 md:mb-5 md:mt-0 bg-white bg-opacity-5">
       <input type="text" placeholder="Wpisz tytuł filmu..." class="form__input">
       <div class="md:hidden">
-        <Button @click.native="openSearch" icon="adjustments" type="light" :count="18">Filtry</Button>
+        <Button @click.native="openSearch" icon="adjustments" type="light" :count="count">Filtry</Button>
       </div>
       <Button @click.native="search" icon="search">Szukaj</Button>
     </div>
-
-    <p class="mx-8">      
-
-      <span class="query" v-if="getQuery.query">
-        <span class="title">Nazwa:</span>
-        <span>{{ getQuery.query }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.genre_list">
-        <span class="title">Gatunek:</span>
-        <span>{{ getQuery.genre_list }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.type">
-        <span class="title">Typ:</span>
-        <span>{{ getQuery.type }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.start_year">
-        <span class="title">Od roku:</span>
-        <span>{{ getQuery.start_year }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.end_year">
-        <span class="title">Do roku:</span>
-        <span>{{ getQuery.end_year }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.audiosubtitle_andor">
-        <span class="title">Napisy, audio:</span>
-        <span>{{ getQuery.audiosubtitle_andor }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.start_rating">
-        <span class="title">Oceny od:</span>
-        <span>{{ getQuery.start_rating }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.end_rating">
-        <span class="title">Oceny do:</span>
-        <span>{{ getQuery.end_rating }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.subtitle">
-        <span class="title">Napisy:</span>
-        <span>{{ getQuery.subtitle }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.audio">
-        <span class="title">Lektor:</span>
-        <span>{{ getQuery.audio }}</span>
-      </span>
-
-      <span class="query" v-if="getQuery.countrylist">
-        <span class="title">Kraje:</span>
-        <span>{{ getQuery.countrylist }}</span>
-      </span>
-
-      
-    </p>
 
     <NoData v-if="true" icon="search-circle" title="Brak wyników dla podanych kryteriów" />
     <Loader v-if="loading" class="my-32" />  
     <MovieSlider v-else :movies="movies" title="Wyniki" @open="openDetails" />
 
     <Details :id="id" :show="showDetails" @close="closeDetails" /> 
-    <Filters :show="showSearch" @close="closeSearch" @search="search" /> 
+    <Filters :show="showSearch" @close="closeSearch" @search="search" :count="count" /> 
   </div>
 </template>
 
@@ -101,7 +41,11 @@ export default {
   computed: {
     ...mapGetters([
       'getQuery'
-    ])
+    ]),
+
+    count() {
+      return 17;
+    }
   },
 
   methods: {

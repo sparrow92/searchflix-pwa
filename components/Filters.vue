@@ -3,7 +3,7 @@
     <template v-slot:header>
       <div class="flex items-center gap-3">
         <span>Filtry wyszukiwania</span>
-        <span v-if="counter" class="rounded-full font-semibold flex items-center justify-center text-sm bg-gradient-to-b from-red to-red-900 w-6 h-6">10</span>
+        <span v-if="count" class="rounded-full font-semibold flex items-center justify-center text-sm bg-gradient-to-b from-red to-red-900 w-6 h-6">{{ count }}</span>
       </div>
     </template>
 
@@ -34,7 +34,7 @@
       </div>
 
       <div class="section col-span-2">
-        <span class="title">Kraj produkcji</span>
+        <span class="title">Rok produkcji</span>
         <div class="block h-10"></div>
         <Slider v-model="years" :min="1900" :max="2021" class="px-5" />          
       </div>
@@ -76,6 +76,11 @@ export default {
     show: {
       type: Boolean,
       default: () => false
+    },
+
+    count: {
+      type: Number,
+      default: () => 0     
     }
   },
 
@@ -103,7 +108,8 @@ export default {
         series: true,
         movie: true
       },
-      queryData: {
+      queryData: this.defaultQuery,
+      defaultQuery: {
         query: '',
         limit: 5, // max 100
         offset: 0, // pagination
@@ -148,10 +154,6 @@ export default {
       return this.reducedGenres.filter((item) => {
         return item.genre.toLowerCase().includes(this.genre.toLowerCase());
       }).slice(0, this.genreLimit)
-    },
-
-    counter() {
-      return 15
     }
   },
 
@@ -200,12 +202,33 @@ export default {
       }
     },
 
-    reset: function() {
+    reset() {
+      this.years = [1900, 2021];
+      this.rating = [0, 10];
+      this.selectedGenres = [];
+      this.selectedCountries = [];
 
+      this.saveQuery(this.defaultQuery)
     },
 
     search: function() {
+      if (this.type.movie !== this.type.series) {
+        this.queryData.type = this.type.movie ? 'movie' : 'series';
+      } else {
+        this.queryData.type = ''
+      }
+
+      this.queryData.genre_list = Array.prototype.map.call(this.selectedGenres, item => item.netflixid).toString();
+      this.queryData.countrylist = Array.prototype.map.call(this.selectedCountries, item => item.id).toString(); 
+
+      this.queryData.start_year = this.years[0];
+      this.queryData.end_year = this.years[1];
+
+      this.queryData.start_rating = this.rating[0];
+      this.queryData.end_rating = this.rating[1];
+
       this.saveQuery(this.queryData)
+      console.log(this.queryData)
       this.$emit('search');
       this.close()
     },
