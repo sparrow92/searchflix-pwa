@@ -4,7 +4,8 @@
       <span>Poniższa lista przedstawia produkcje, który w najbliższym czasie znikną z oferty Netflixa.</span>
     </Heading>
 
-    <NoData v-if="true" icon="exclamation-circle" title="Brak danych" />
+    <NoData v-if="_.isEmpty(grouped)" icon="exclamation-circle" title="Brak danych" />
+    <Loader v-if="loading" class="my-32" />
     <MovieSlider v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="$moment(group.date, 'YYYY-MM-DD').fromNow()" @open="open" />
 
     <Details :id="id" :show="showDetails" @close="close" /> 
@@ -26,7 +27,8 @@ export default {
   data() {
     return {
       showDetails: false,
-      id: null
+      id: null,
+      loading: false
     }
   },
 

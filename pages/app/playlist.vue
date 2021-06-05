@@ -4,7 +4,7 @@
       <span>Twoja lista filmów i seriali, które planujesz zobaczyć.</span>
     </Heading>
 
-    <NoData v-if="true" icon="film" title="Brak zapisanych filmów" />
+    <NoData v-if="_.isEmpty(grouped)" icon="film" title="Brak zapisanych filmów" />
     <Loader v-if="loading" class="my-32" />
     <MovieSlider v-else v-for="(group, index) in grouped" :key="index" :movies="group.movies" :title="group.type === 'movie' ? 'filmy' : 'seriale'" @open="open" />   
 

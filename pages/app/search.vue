@@ -14,9 +14,9 @@
       <Button @click.native="search" icon="search">Szukaj</Button>
     </div>
 
-    <NoData v-if="true" icon="search-circle" title="Brak wyników dla podanych kryteriów" />
+    <NoData v-if="_.isEmpty(movies)" icon="search-circle" title="Brak wyników dla podanych kryteriów" />
     <Loader v-if="loading" class="my-32" />  
-    <MovieSlider v-else :movies="movies" title="Wyniki" @open="openDetails" />
+    <MovieSlider v-if="movies.length && !loading" :movies="movies" title="Wyniki" @open="openDetails" />
 
     <Details :id="id" :show="showDetails" @close="closeDetails" /> 
     <Filters :show="showSearch" @close="closeSearch" @search="search" :count="count" @filters="updateCount" /> 
