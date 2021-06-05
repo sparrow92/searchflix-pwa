@@ -1,9 +1,9 @@
 <template>
   <Modal :show="show" @close="close" type="search">
     <template v-slot:header>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center">
         <span>Filtry wyszukiwania</span>
-        <span v-if="count" class="rounded-full font-semibold flex items-center justify-center text-sm bg-gradient-to-b from-red to-red-900 w-6 h-6">{{ count }}</span>
+        <span v-if="count" class="rounded-full font-semibold flex items-center justify-center text-sm bg-gradient-to-b from-red to-red-900 w-6 h-6 ml-3">{{ count }}</span>
       </div>
     </template>
 
@@ -41,8 +41,8 @@
 
       <div class="section col-span-2 md:col-span-1">
         <span class="title">Typ</span>
-        <div class="flex gap-5">
-          <Toggle name="Seriale" :checked="type.series" @click.native="type.series = !type.series" />
+        <div class="flex">
+          <Toggle name="Seriale" :checked="type.series" @click.native="type.series = !type.series" class="mr-5" />
           <Toggle name="Filmy" :checked="type.movie" @click.native="type.movie = !type.movie" />            
         </div>   
       </div>
@@ -56,8 +56,8 @@
     </div>
 
     <template v-slot:footer>
-      <div class="flex gap-3">
-        <Button @click.native="reset">Resetuj</Button>
+      <div class="flex">
+        <Button @click.native="reset" class="mr-3">Resetuj</Button>
         <Button @click.native="search" type="light">Zastosuj</Button>          
       </div>
     </template>

@@ -1,8 +1,8 @@
 <template>
-    <button :class="[small ? 'text-sm py-2 px-5 gap-2' : 'text-lg py-2 px-8 gap-3', { 'btn--counter': count }, `btn btn--${type}`]">
-      <component v-if="icon" :is="`solid-${icon}-icon`" :class="small ? 'w-5 h-5' : 'w-6 h-6'" />
+    <button :class="[small ? 'text-sm py-2 px-5' : 'text-lg py-2 px-8', { 'btn--counter': count }, `btn btn--${type}`]">
+      <component v-if="icon" :is="`solid-${icon}-icon`" :class="small ? 'w-5 h-5 mr-2' : 'w-6 h-6 mr-3'" />
       <slot />
-      <div v-if="count" class="counter"> 
+      <div v-if="count" class="counter" :class="small ? 'ml-2' : 'ml-3'"> 
         {{ count }}
       </div>
     </button>

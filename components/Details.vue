@@ -23,7 +23,7 @@
       <span>{{ Math.round(movie.netflixruntime/60) }} min</span>
     </p>
 
-    <div v-if="movie.imdbrating" class="block rounded mt-4 flex items-center gap-3">
+    <div v-if="movie.imdbrating" class="block rounded mt-4 flex items-center space-x-3">
       <img src="@/assets/images/imdb.png" class="w-8 h-8">
       <span class="text-lg font-semibold text-yellow-400">
         {{ movie.imdbrating }}

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-3 items-center cursor-pointer">
+  <div class="flex space-x-3 items-center cursor-pointer">
     <toggle-button 
       v-model="switched"
       :css-colors="true"
