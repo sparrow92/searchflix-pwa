@@ -19,7 +19,7 @@
     <MovieSlider v-else :movies="movies" title="Wyniki" @open="openDetails" />
 
     <Details :id="id" :show="showDetails" @close="closeDetails" /> 
-    <Filters :show="showSearch" @close="closeSearch" @search="search" :count="count" /> 
+    <Filters :show="showSearch" @close="closeSearch" @search="search" :count="count" @filters="updateCount" /> 
   </div>
 </template>
 
@@ -34,21 +34,22 @@ export default {
       showDetails: false,
       movies: [],
       id: 0,
-      loading: false
+      loading: false,
+      count: 0
     }
   },
 
   computed: {
     ...mapGetters([
       'getQuery'
-    ]),
-
-    count() {
-      return 17;
-    }
+    ])
   },
 
   methods: {
+    updateCount(e) {
+      this.count = e;
+    },
+
     closeSearch: function() {
       this.showSearch = false;
     },

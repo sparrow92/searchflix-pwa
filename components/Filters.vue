@@ -76,11 +76,6 @@ export default {
     show: {
       type: Boolean,
       default: () => false
-    },
-
-    count: {
-      type: Number,
-      default: () => 0     
     }
   },
 
@@ -131,6 +126,18 @@ export default {
     ...mapGetters([
       'getQuery'
     ]),
+
+    count() {
+      let arr = [
+        !this._.isEmpty(this.selectedGenres),
+        !this._.isEmpty(this.selectedCountries),
+        this.years[0] !== 1900 || this.years[1] !== 2021,
+        this.rating[0] !== 0 || this.rating[1] !== 10,
+        this.type.movie !== this.type.series
+      ];
+
+      return arr.filter(Boolean).length;
+    },
 
     reducedCountries() {
       return this._.differenceWith(this.countries, this.selectedCountries, function(o1, o2) {
@@ -230,6 +237,7 @@ export default {
       this.saveQuery(this.queryData)
       console.log(this.queryData)
       this.$emit('search');
+      this.$emit('filters', this.count);
       this.close()
     },
 
