@@ -1,6 +1,6 @@
 <template>
   <div class="w-full mb-5">
-    <Heading class="mx-8" :title="title" :border="false" />
+    <Heading class="px-8" :title="title" :border="false" />
 
     <swiper :options="swiperOptions" class="w-full">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
