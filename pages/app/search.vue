@@ -9,9 +9,9 @@
     <div class="flex flex-wrap md:flex-nowrap items-center w-full p-8 mb-5 mt-5 md:mb-5 md:mt-0 bg-white bg-opacity-5">
       <input type="text" placeholder="Wpisz tytuł filmu..." class="form__input mr-3 md:mr-10">
       <div class="md:hidden">
-        <Button @click.native="openSearch" icon="adjustments" type="light" class="mr-3" :count="count">Filtry</Button>
+        <Button @click.native="openSearch" icon="adjustments" type="light" class="mr-3 my-1 md:my-0" :count="count">Filtry</Button>
       </div>
-      <Button @click.native="search" icon="search">Szukaj</Button>
+      <Button @click.native="search" icon="search" class="my-1 md:my-0">Szukaj</Button>
     </div>
 
     <NoData v-if="_.isEmpty(movies)" icon="search-circle" title="Brak wyników dla podanych kryteriów" />

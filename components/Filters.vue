@@ -11,7 +11,8 @@
 
       <div class="section col-span-2">
         <input type="text" placeholder="Wpisz gatunek..." class="form__input small" v-model="genre">
-        <div class="flex flex-wrap mt-4 max-h-20 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+        <Loader v-if="_.isEmpty(genres)" class="py-16" />  
+        <div v-else class="flex flex-wrap mt-4 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
           <Badge v-for="(item, index) in filteredGenres" :key="index" type="add" @click.native="addGenre(item)">{{ item.genre }}</Badge>
           <span v-show="genres.length > genreLimit && filteredGenres.length" @click="genreLimit = genres.length" class="show-more">Wczytaj pozostałe...</span>
           <span v-show="!filteredGenres.length" class="no-data">Brak szukanych gatunków...</span>
@@ -23,7 +24,8 @@
 
       <div class="section col-span-2">
         <input type="text" placeholder="Wpisz kraj produkcji..." class="form__input small" v-model="country">
-        <div class="flex flex-wrap mt-4 max-h-20 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+        <Loader v-if="_.isEmpty(countries)" class="py-16" />  
+        <div v-else class="flex flex-wrap mt-4 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
           <Badge v-for="(item, index) in filteredCountries" :key="index" type="add" @click.native="addCountry(item)">{{ item.country }}</Badge>
           <span v-show="countries.length > countryLimit && filteredCountries.length" @click="countryLimit = countries.length" class="show-more">Wczytaj pozostałe...</span>
           <span v-show="!filteredCountries.length" class="no-data">Brak szukanych krajów...</span>

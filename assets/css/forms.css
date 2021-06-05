@@ -4,5 +4,5 @@
 }
 
 .form__input.small {
-  @apply text-lg md:text-2xl py-2;
+  @apply text-lg md:text-2xl pt-0 pb-2;
 }

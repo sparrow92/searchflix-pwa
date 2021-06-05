@@ -53,10 +53,6 @@ export default {
 </script>
 
 <style lang="postcss">
-  a {
-    -webkit-tap-highlight-color: transparent;
-  }
-
   .menu-item {
     @apply flex flex-col items-center text-gray-300 md:h-full md:justify-center md:hover:bg-gray-900 bg-opacity-20 md:px-5;
   }

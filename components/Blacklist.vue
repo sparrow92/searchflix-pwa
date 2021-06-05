@@ -5,7 +5,8 @@
     </template>
 
     <input type="text" placeholder="Wpisz gatunek..." class="form__input small" v-model="selected">
-    <div class="flex flex-wrap mt-4 max-h-20 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+    <Loader v-if="_.isEmpty(genres)" class="py-16" />  
+    <div v-else class="flex flex-wrap mt-4 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <Badge v-for="(item, index) in filteredGenres" :key="index" type="add" @click.native="add(item)">{{ item.genre }}</Badge>
       <span v-show="genres.length > genreLimit && filteredGenres.length" @click="genreLimit = genres.length" class="show-more">Wczytaj pozostałe...</span>
       <span v-show="!filteredGenres.length" class="no-data">Brak szukanych gatunków...</span>
