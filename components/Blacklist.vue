@@ -39,7 +39,8 @@ export default {
     return {
       selected: '',
       genres: [],
-      genreLimit: 10
+      genreLimit: 10,
+      debugMode: process.env.DEBUG_MODE,
     }
   },
 
@@ -83,10 +84,14 @@ export default {
     close: function() {
       this.$emit('close');
     },
+
+    async getGenres() {
+      this.genres = await mock.fetchGenres();
+    },
   },
 
-  async mounted() {
-    this.genres = await mock.fetchGenres();
+  mounted() {
+    this.getGenres();
   }
 }
 </script>

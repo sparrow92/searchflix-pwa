@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       images: [],
+      debugMode: process.env.DEBUG_MODE,
     }
   },
 
@@ -34,8 +35,17 @@ export default {
 
   methods: {
     async getImages() {
-      const images = await mock.fetchMovieImages(this.id);
-      this.images = images
+      if (this.debugMode === "true") {
+        this.images = await mock.fetchMovieImages(this.id);
+      } else {
+        const response = await this.$axios.get('/images', { 
+          params: {
+            netflixid: this.id            
+          }
+         });
+
+        this.images = response.data.results;
+      }
     },
   },
 

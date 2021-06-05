@@ -4,7 +4,7 @@ export const state = () => ({
   blacklist:  process.browser ? (JSON.parse(localStorage.getItem('blacklist')) || []) : [],
   query: {
     query: '',
-    limit: 5, 
+    limit: 25, 
     offset: 0, 
     genre_list: '',
     type: '',

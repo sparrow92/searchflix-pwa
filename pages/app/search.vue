@@ -7,16 +7,16 @@
     </Heading>
 
     <div class="flex flex-wrap md:flex-nowrap items-center w-full p-8 mb-5 mt-5 md:mb-5 md:mt-0 bg-white bg-opacity-5">
-      <input type="text" placeholder="Wpisz tytuł filmu..." class="form__input mr-3 md:mr-10">
+      <input type="text" placeholder="Wpisz tytuł filmu..." class="form__input mr-3 md:mr-10" v-model="searchQuery" @keyup.enter="search">
       <div class="md:hidden">
         <Button @click.native="openSearch" icon="adjustments" type="light" class="mr-3 my-1 md:my-0" :count="count">Filtry</Button>
       </div>
       <Button @click.native="search" icon="search" class="my-1 md:my-0">Szukaj</Button>
     </div>
 
-    <NoData v-if="_.isEmpty(movies)" icon="search-circle" title="Brak wyników dla podanych kryteriów" />
+    <NoData v-if="_.isEmpty(movies) && !loading" icon="search-circle" title="Brak wyników dla podanych kryteriów" />
     <Loader v-if="loading" class="my-32" />  
-    <MovieSlider v-if="movies.length && !loading" :movies="movies" title="Wyniki" @open="openDetails" />
+    <MovieSlider v-if="!_.isEmpty(movies) && !loading" :movies="movies" title="Wyniki" @open="openDetails" />
 
     <Details :id="id" :show="showDetails" @close="closeDetails" /> 
     <Filters :show="showSearch" @close="closeSearch" @search="search" :count="count" @filters="updateCount" /> 
@@ -30,12 +30,15 @@ export default {
 
   data() {
     return {
+      searchQuery: '',
       showSearch: false,
       showDetails: false,
       movies: [],
       id: 0,
       loading: false,
-      count: 0
+      count: 0,
+      debugMode: process.env.DEBUG_MODE,
+      query: []
     }
   },
 
@@ -62,27 +65,25 @@ export default {
       this.showSearch = true;
     },
 
-    openDetails: function() {
-      this.id = null;
+    openDetails: function(value) {
+      this.id = value;
       this.showDetails = true;
     },
 
     search: function() {
-      return false;
-
-      this.loading = true;
-      this.$axios.get('/search', { params: this.getQuery }).then(response => {
-        this.movies = response.data.results
-      }).catch(() => {
-
-      }).then(() => {
-        this.loading = false;
-      })
+      if (this.debugMode === "true") {
+        console.log("Tryb debugowania. Brak możliwości wyszukiwania.");
+      } else {
+        this.loading = true;
+        this.query = Object.assign({}, this.getQuery);
+        this.query.query = this.searchQuery;
+        this.$axios.get('/search', { params: this.query }).then(response => {
+          this.movies = response.data.results
+        }).catch(() => {}).then(() => {
+          this.loading = false;
+        })
+      }
     }
-  },
-
-  created() {
-    // this.search()
   }
 }
 </script>

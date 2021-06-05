@@ -4,7 +4,7 @@
 
     <swiper :options="swiperOptions" class="w-full">
       <swiper-slide v-for="(movie, index) in movies" :key="index">
-        <Thumbnail :id="getId(movie)" :poster="movie.poster || movie.img" @click.native="open(movie)" />
+        <Thumbnail :id="getId(movie)" :poster="(movie.poster === '0' || movie.poster === null) ? movie.img : movie.poster" @click.native="open(movie)" />
         
       </swiper-slide>
       <div class="swiper-button-prev cursor-pointer mx-5" slot="button-prev"></div>

@@ -91,6 +91,7 @@ export default {
 
   data() {
     return {
+      debugMode: process.env.DEBUG_MODE,
       genre: '',
       country: '',
       years: [1900, 2021],
@@ -108,7 +109,7 @@ export default {
       queryData: this.defaultQuery,
       defaultQuery: {
         query: '',
-        limit: 5, // max 100
+        limit: 25, // max 100
         offset: 0, // pagination
         genre_list: '',
         type: '', // movie or series
@@ -246,11 +247,19 @@ export default {
     close: function() {
       this.$emit('close');
     },
+
+    async getGenres() {
+      this.genres = await mock.fetchGenres();
+    },
+
+    async getCountries() {
+      this.countries = await mock.fetchCountries();
+    }
   },  
   
-  async mounted() {
-    this.genres = await mock.fetchGenres();
-    this.countries = await mock.fetchCountries();
+  mounted() {
+    this.getGenres();
+    this.getCountries();
   }
 }
 </script>

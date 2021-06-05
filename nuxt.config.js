@@ -86,6 +86,7 @@ export default {
   env: {
     NODE_ENV: process.env.NODE_ENV,
     X_RAPIDAPI_KEY: process.env.X_RAPIDAPI_KEY,
-    X_RAPIDAPI_HOST: process.env.X_RAPIDAPI_HOST
+    X_RAPIDAPI_HOST: process.env.X_RAPIDAPI_HOST,
+    DEBUG_MODE: process.env.DEBUG_MODE
   },
 }

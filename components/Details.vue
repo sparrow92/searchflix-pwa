@@ -52,6 +52,7 @@ export default {
       images: [],
       details: [],
       modalKey: 0,
+      debugMode: process.env.DEBUG_MODE,
     }
   },
 
@@ -114,11 +115,31 @@ export default {
     ]),
 
     async getImages(id) {
-      this.images = await mock.fetchMovieImages(id);
+      if (this.debugMode === "true") {
+        this.images = await mock.fetchMovieImages(id);
+      } else {
+        const response = await this.$axios.get('/images', { 
+          params: {
+            netflixid: id            
+          }
+         });
+
+         this.images = response.data.results
+      }
     },
 
     async getDetails(id) {
-      this.details = await mock.fetchMovieDetails(id);
+      if (this.debugMode === "true") {
+        this.details = await mock.fetchMovieDetails(id);
+      } else {
+        const response = await this.$axios.get('/title', { 
+          params: {
+            netflixid: id            
+          }
+         });
+
+         this.details = response.data.results
+      }
     },
 
     addToList() {
