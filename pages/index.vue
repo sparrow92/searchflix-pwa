@@ -10,11 +10,7 @@
 <script>
 
 export default {
-  methods: {
-  },
-
-  mounted() {
-  }
+  middleware: 'country'
 }
 </script>
 
