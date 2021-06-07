@@ -58,6 +58,7 @@ export default {
     },
 
     closeDetails: function() {
+      this.id = null;
       this.showDetails = false;
     },
 
