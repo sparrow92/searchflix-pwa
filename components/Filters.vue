@@ -168,6 +168,8 @@ export default {
     count() {
       let arr = [
         !this._.isEmpty(this.selectedGenres),
+        !this._.isEmpty(this.selectedAudios),
+        !this._.isEmpty(this.selectedSubtitles),
         !this._.isEmpty(this.selectedCountries),
         this.years[0] !== 1900 || this.years[1] !== 2021,
         this.rating[0] !== 0 || this.rating[1] !== 10,
