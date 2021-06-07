@@ -336,6 +336,9 @@ export default {
       this.queryData.genre_list = Array.prototype.map.call(this.selectedGenres, item => item.netflixid).toString();
       this.queryData.countrylist = Array.prototype.map.call(this.selectedCountries, item => item.id).toString(); 
 
+      this.queryData.audio = Array.prototype.map.call(this.selectedAudios, item => item.name).toString();
+      this.queryData.subtitle = Array.prototype.map.call(this.selectedSubtitles, item => item.name).toString();
+
       this.queryData.start_year = this.years[0];
       this.queryData.end_year = this.years[1];
 
