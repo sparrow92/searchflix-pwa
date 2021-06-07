@@ -318,6 +318,10 @@ export default {
       this.selectedCountries = [];
       this.selectedAudios = [];
       this.selectedSubtitles = [];
+      this.genre = '';
+      this.country = '';
+      this.audio = '';
+      this.subtitle = '';
 
       this.saveQuery(this.defaultQuery)
     },
