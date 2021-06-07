@@ -114,6 +114,13 @@ export default {
       if (value) {
         this.queryData = {...this.getQuery}
       }
+    },
+
+    defaultLang (value) {
+      if (value) {
+        this.addAudio(this.defaultLang);
+        this.addSubtitle(this.defaultLang);
+      }
     }
   },
 
@@ -162,7 +169,8 @@ export default {
 
   computed: {
     ...mapGetters([
-      'getQuery'
+      'getQuery',
+      'selectedLang'
     ]),
 
     count() {
@@ -177,6 +185,12 @@ export default {
       ];
 
       return arr.filter(Boolean).length;
+    },
+
+    defaultLang() {
+      return this.languages.find((item) => {
+        return item.code.toLowerCase() === this.selectedLang.toLowerCase();
+      });
     },
 
     reducedCountries() {
