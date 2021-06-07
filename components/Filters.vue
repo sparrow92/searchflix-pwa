@@ -60,12 +60,12 @@
 
         <Loader v-if="_.isEmpty(languages)" class="py-16" />  
         <div v-else class="flex flex-wrap mt-4 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-          <Badge v-for="(item, index) in filteredAudios" :key="index" type="add" @click.native="addAudio(item)" class="lowercase">{{ item.name }}</Badge>
+          <Badge small v-for="(item, index) in filteredAudios" :key="index" type="add" @click.native="addAudio(item)" class="lowercase">{{ item.name }}</Badge>
           <span v-show="languages.length > 10 && filteredAudios.length"  @click="audioLimit = languages.length" class="show-more">Wczytaj pozostałe...</span>
           <span v-show="!filteredAudios.length" class="no-data">Nie ma takiego języka...</span>
         </div>   
         <div class="flex flex-wrap mt-2">
-          <Badge v-for="(item, index) in selectedAudios" :key="index" @action="removeAudio(item.code)" class="lowercase">{{ item.name }}</Badge>
+          <Badge small v-for="(item, index) in selectedAudios" :key="index" @action="removeAudio(item.code)" class="lowercase">{{ item.name }}</Badge>
         </div>  
       </div>
 
@@ -74,12 +74,12 @@
 
         <Loader v-if="_.isEmpty(languages)" class="py-16" />  
         <div v-else class="flex flex-wrap mt-4 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-          <Badge v-for="(item, index) in filteredSubtitles" :key="index" type="add" @click.native="addSubtitle(item)" class="lowercase">{{ item.name }}</Badge>
+          <Badge small v-for="(item, index) in filteredSubtitles" :key="index" type="add" @click.native="addSubtitle(item)" class="lowercase">{{ item.name }}</Badge>
           <span v-show="languages.length > 10 && filteredSubtitles.length" @click="subtitlesLimit = languages.length" class="show-more">Wczytaj pozostałe...</span>
           <span v-show="!filteredSubtitles.length" class="no-data">Nie ma takiego języka...</span>
         </div>   
         <div class="flex flex-wrap mt-2">
-          <Badge v-for="(item, index) in selectedSubtitles" :key="index" @action="removeSubtitle(item.code)" class="lowercase">{{ item.name }}</Badge>
+          <Badge small v-for="(item, index) in selectedSubtitles" :key="index" @action="removeSubtitle(item.code)" class="lowercase">{{ item.name }}</Badge>
         </div>          
       </div>
 
