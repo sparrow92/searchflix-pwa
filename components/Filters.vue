@@ -55,6 +55,34 @@
         <Slider v-model="rating" :min="0" :max="10" class="px-2.5" />          
       </div>
 
+      <div class="section col-span-2 md:col-span-1">
+        <input type="text" placeholder="Język audio..." class="form__input small" v-model="audio">
+
+        <Loader v-if="_.isEmpty(languages)" class="py-16" />  
+        <div v-else class="flex flex-wrap mt-4 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+          <Badge v-for="(item, index) in filteredAudios" :key="index" type="add" @click.native="addAudio(item)" class="lowercase">{{ item.name }}</Badge>
+          <span v-show="languages.length > 10 && filteredAudios.length"  @click="audioLimit = languages.length" class="show-more">Wczytaj pozostałe...</span>
+          <span v-show="!filteredAudios.length" class="no-data">Nie ma takiego języka...</span>
+        </div>   
+        <div class="flex flex-wrap mt-2">
+          <Badge v-for="(item, index) in selectedAudios" :key="index" @action="removeAudio(item.code)" class="lowercase">{{ item.name }}</Badge>
+        </div>  
+      </div>
+
+      <div class="section col-span-2 md:col-span-1">
+        <input type="text" placeholder="Język napisów..." class="form__input small" v-model="subtitle">
+
+        <Loader v-if="_.isEmpty(languages)" class="py-16" />  
+        <div v-else class="flex flex-wrap mt-4 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-red-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+          <Badge v-for="(item, index) in filteredSubtitles" :key="index" type="add" @click.native="addSubtitle(item)" class="lowercase">{{ item.name }}</Badge>
+          <span v-show="languages.length > 10 && filteredSubtitles.length" @click="subtitlesLimit = languages.length" class="show-more">Wczytaj pozostałe...</span>
+          <span v-show="!filteredSubtitles.length" class="no-data">Nie ma takiego języka...</span>
+        </div>   
+        <div class="flex flex-wrap mt-2">
+          <Badge v-for="(item, index) in selectedSubtitles" :key="index" @action="removeSubtitle(item.code)" class="lowercase">{{ item.name }}</Badge>
+        </div>          
+      </div>
+
     </div>
 
     <template v-slot:footer>
@@ -94,14 +122,21 @@ export default {
       debugMode: process.env.DEBUG_MODE,
       genre: '',
       country: '',
+      audio: '',
+      subtitle: '',
       years: [1900, 2021],
       rating: [0, 10],
       genres: [],
       countries: [],
+      languages: [],
       selectedGenres: [],
       selectedCountries: [],
+      selectedAudios: [],
+      selectedSubtitles: [],
       genreLimit: 10,
       countryLimit: 10,
+      audioLimit: 5,
+      subtitlesLimit: 5,
       type: {
         series: true,
         movie: true
@@ -154,6 +189,18 @@ export default {
       })
     },
 
+    reducedAudios() {
+      return this._.differenceWith(this.languages, this.selectedAudios, function(o1, o2) {
+        return o1['code'] === o2['code']
+      })      
+    },
+
+    reducedSubtitles() {
+      return this._.differenceWith(this.languages, this.selectedSubtitles, function(o1, o2) {
+        return o1['code'] === o2['code']
+      })      
+    },
+
     filteredCountries() {
       return this.reducedCountries.filter((item) => {
         return item.country.toLowerCase().includes(this.country.toLowerCase());
@@ -164,6 +211,18 @@ export default {
       return this.reducedGenres.filter((item) => {
         return item.genre.toLowerCase().includes(this.genre.toLowerCase());
       }).slice(0, this.genreLimit)
+    },
+
+    filteredAudios() {
+      return this.reducedAudios.filter((item) => {
+        return item.name.toLowerCase().includes(this.audio.toLowerCase());
+      }).slice(0, this.audioLimit)      
+    },
+
+    filteredSubtitles() {
+      return this.reducedSubtitles.filter((item) => {
+        return item.name.toLowerCase().includes(this.subtitle.toLowerCase());
+      }).slice(0, this.subtitlesLimit)      
     }
   },
 
@@ -192,6 +251,46 @@ export default {
       }
     },
 
+    addAudio(lang) {
+      let array = this.selectedAudios.filter(item => {
+        return item.code === lang.code
+      });
+
+      if (!array.length) {
+        this.selectedAudios.push(lang)
+      }
+    },
+
+    addSubtitle(lang) {
+      let array = this.selectedSubtitles.filter(item => {
+        return item.code === lang.code
+      });
+
+      if (!array.length) {
+        this.selectedSubtitles.push(lang)
+      }
+    },
+
+    removeSubtitle(code) {
+      let array = this.selectedSubtitles.filter(item => {
+        return item.code === code
+      });
+
+      if (array.length) {
+        this.selectedSubtitles.splice(this.selectedSubtitles.map(item => item.code).indexOf(code), 1)
+      }
+    },
+
+    removeAudio(code) {
+      let array = this.selectedAudios.filter(item => {
+        return item.code === code
+      });
+
+      if (array.length) {
+        this.selectedAudios.splice(this.selectedAudios.map(item => item.code).indexOf(code), 1)
+      }
+    },
+
     removeCountry(id) {
       let array = this.selectedCountries.filter(item => {
         return item.id === id
@@ -217,6 +316,8 @@ export default {
       this.rating = [0, 10];
       this.selectedGenres = [];
       this.selectedCountries = [];
+      this.selectedAudios = [];
+      this.selectedSubtitles = [];
 
       this.saveQuery(this.defaultQuery)
     },
@@ -254,12 +355,17 @@ export default {
 
     async getCountries() {
       this.countries = await mock.fetchCountries();
+    },
+
+    async getLangs() {
+      this.languages = await mock.fetchLanguages();
     }
   },  
   
   mounted() {
     this.getGenres();
     this.getCountries();
+    this.getLangs();
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="px-8 w-full">
-    <div class="flex items-center w-full h-16">
+    <div class="flex items-center w-full h-16 mb-4">
       <Loader v-if="selected === ''" />
       <v-select
         v-else
