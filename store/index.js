@@ -1,5 +1,6 @@
 export const state = () => ({
   country: process.browser ? (localStorage.getItem('country') || null) : null,
+  lang: process.browser ? (localStorage.getItem('lang') || null) : null,
   movies:  process.browser ? (JSON.parse(localStorage.getItem('movies')) || []) : [],
   blacklist:  process.browser ? (JSON.parse(localStorage.getItem('blacklist')) || []) : [],
   query: {
@@ -26,6 +27,10 @@ export const getters = {
 
   selectedCountry(state) {
     return state.country
+  },
+
+  selectedLang(state) {
+    return state.lang
   },
 
   getMovies(state) {
@@ -93,6 +98,14 @@ export const mutations = {
   STORE_QUERY(state, payload) {
     state.query = payload
   },
+
+  REMOVE_LANG(state) {
+    state.lang = null
+  },
+
+  UPDATE_LANG(state, code) {
+    state.lang = code
+  },
 };
 
 export const actions = {
@@ -119,6 +132,16 @@ export const actions = {
   removeGenre({ commit, state }, id) {
     commit('REMOVE_GENRE', id);
     localStorage.setItem('blacklist', JSON.stringify(state.blacklist));
+  },
+
+  updateLang({ commit }, code) {
+    commit('UPDATE_LANG');
+    localStorage.setItem('lang', code);
+  },
+
+  removeLang({ commit }) {
+    commit('REMOVE_LANG');
+    localStorage.removeItem('lang');
   },
 
   resetBlacklist({ commit }) {

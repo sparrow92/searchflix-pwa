@@ -1,4 +1,5 @@
 import countries from './data/country/all'
+import languages from './data/language/all'
 import genres from './data/genre/all'
 import movies from './data/movie/all'
 import expiring from './data/movie/expiring'
@@ -14,6 +15,10 @@ const fetch = (mockData, time = 0) => {
 export default {
   fetchCountries () {
     return fetch(countries, 1000)
+  },
+
+  fetchLanguages () {
+    return fetch(languages, 1000)
   },
 
   fetchGenres () {

@@ -5,6 +5,9 @@
     </Heading>
     <Heading title="Wybierz swój kraj" class="px-8" />
     <SelectCountry />
+
+    <Heading title="Wybierz domyślny język" class="px-8" />
+    <SelectLanguage />
     <!-- <div class="p-8 w-full">
       <Heading title="Czarna lista">
         <Button @click.native="open" icon="adjustments" type="light" class="mr-2" small>Modyfikuj</Button>     

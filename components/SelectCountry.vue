@@ -1,7 +1,7 @@
 <template>
   <div class="px-8 w-full">
     <div class="flex items-center w-full h-16">
-      <Loader v-if="!selected" />
+      <Loader v-if="selected === ''" />
       <v-select
         v-else
         class="select-country cursor-pointer w-full max-w-md"
@@ -29,7 +29,7 @@ import mock from '@/api/mock/index'
 export default {
   data() {
     return {
-      selected: null,
+      selected: '',
       countries: []
     }
   },
@@ -70,8 +70,8 @@ export default {
     background: #dfe5fb;
     border: none;
     color: #394066;
-    text-transform: lowercase;
-    font-variant: small-caps;
+    text-transform: capitalize;
+    font-variant: normal;
   }
 
   .select-country .vs__clear,
