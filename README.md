@@ -16,7 +16,7 @@
 Non-commercial app made for personal use. The possible coincidence of names with other applications is not intentional.
 
 ## API
-The project uses the **unogsNG API** [_documentation_](https://rapidapi.com/unogs/api/unogsng/) from RapidAPI.
+The project uses the [**unogsNG API**](https://rapidapi.com/unogs/api/unogsng/) from RapidAPI.
 
 ## Technologies
 - Nuxt.js
